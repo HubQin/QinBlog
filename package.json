@@ -23,7 +23,7 @@
     "dependencies": {
         "bootstrap": "^4.4.1",
         "font-awesome": "^4.7.0",
-        "jquery": "^1.12.4",
+        "jquery": "^3.4.0",
         "popper.js": "^1.16.0"
     }
 }
