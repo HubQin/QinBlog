@@ -18,6 +18,7 @@ class CreateTagsTable extends Migration
             $table->string('name', 10)->index()->unique();
             $table->text('description')->nullable();
             $table->integer('post_count')->default(0)->comment('标签下的文章总数');
+            $table->string('icon')->comment('图标');
             $table->timestamps();
         });
     }

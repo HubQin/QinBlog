@@ -25,7 +25,6 @@ class CreatePostsTable extends Migration
             $table->tinyInteger('is_show')->default(1)->comment('是否显示');
             $table->text('excerpt')->nullable()->comment('文章摘要，SEO 优化时使用');
             $table->string('slug')->nullable()->comment('SEO 友好的 URI');
-            $table->string('icon')->nullable()->comment('用于文章列表显示的图标');
             $table->timestamps();
         });
     }
