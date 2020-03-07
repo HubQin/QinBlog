@@ -17289,7 +17289,7 @@ readers do not read off random characters that represent icons */
 /* universal */
 
 body {
-  font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
+  font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
 }
 
@@ -17299,7 +17299,7 @@ body {
   border-color: #e7e7e7;
   background-color: #fff;
   box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
-  border-top: 4px solid #00b5ad;
+  border-top: 4px solid #93d5dc;
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 40px;
   margin-top: 0px;
@@ -17338,5 +17338,56 @@ body {
 
 .footer .container p a {
   color: inherit;
+}
+
+/* Post Index Page */
+
+.posts-index-page .post-list .nav > li > a {
+  position: relative;
+  display: block;
+  padding: 5px 14px;
+  font-size: 0.9em;
+}
+
+.posts-index-page .post-list a {
+  color: #444444;
+}
+
+.posts-index-page .post-list a:hover {
+  text-decoration: none;
+}
+
+.posts-index-page .post-list a:visited {
+  color: #a2a2a2;
+}
+
+.posts-index-page .post-list .post-title {
+  font-size: 15px;
+}
+
+.posts-index-page .post-list .post-time {
+  color: #a8a8a8;
+  font-size: 13px;
+}
+
+.posts-index-page .post-list hr {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border: 0;
+  border-top: 1px solid #dcebf5;
+}
+
+@media only screen and (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+.icon {
+  width: 2em;
+  height: 2em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 

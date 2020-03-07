@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title')->index();
             $table->text('body');
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
             $table->integer('topic_id')->unsigned()->default(0)->index()->comment('所属专题,0代表无专题');
             $table->integer('reply_count')->unsigned()->default(0)->comment('回复数量');
             $table->integer('view_count')->unsigned()->default(0)->comment('查看总数');

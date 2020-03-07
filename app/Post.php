@@ -49,7 +49,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title', 'body', 'excerpt', 'slug', 'topic_id', 'icon'
+        'title', 'body', 'excerpt', 'slug', 'topic_id', 'category_id', 'icon'
     ];
 
     /**
@@ -86,5 +86,10 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id')->withTimestamps();
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

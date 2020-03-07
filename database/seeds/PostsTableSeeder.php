@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Post;
 use App\Tag;
+use App\Category;
 
 class PostsTableSeeder extends Seeder
 {
@@ -16,19 +17,24 @@ class PostsTableSeeder extends Seeder
         // 获取 Faker 实例
         $faker = app(Faker\Generator::class);
 
-        $tagIds = Tag::all()->pluck('id')->toArray();
+        $categories = Category::all()->pluck('id');
 
-        $posts = factory(Post::class)->times(100)->make()->each(function ($post, $index) use($faker,$tagIds){
+        $posts = factory(Post::class)->times(100)->make()->each(function ($post, $index) use($faker, $categories){
             $post->user_id = 1;
+            $post->category_id = $faker->randomElement($categories);
         });
 
         $postArray = $posts->toArray();
 
         Post::insert($postArray);
 
-        // Add Tags to post
-        Post::all()->each(function ($post, $index) use ($faker, $tagIds){
-            $post->tags()->sync($faker->randomElements($tagIds));
-        });
+        // 给文章随机打标签
+        $posts = Post::all();
+        $tags = Tag::all()->pluck('id');
+
+        foreach ($posts as $post) {
+            $postTags = $faker->randomElements($tags, $faker->numberBetween(1, 3));
+            $post->tags()->attach($postTags);
+        }
     }
 }

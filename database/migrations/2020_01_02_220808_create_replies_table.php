@@ -19,7 +19,7 @@ class CreateRepliesTable extends Migration
             $table->integer('post_id')->unsigned()->index();
             $table->text('content');
             $table->integer('parent_id')->unsigned()->default(0)->index()->comment('回复评论ID');
-            $table->tinyInteger('status')->unsigned()->index()->default(0)->comment('是否显示');
+            $table->boolean('status')->default(false)->comment('是否显示');
             $table->timestamps();
         });
     }

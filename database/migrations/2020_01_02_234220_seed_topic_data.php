@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class SeedTopicData extends Migration
 {
@@ -15,7 +16,7 @@ class SeedTopicData extends Migration
     {
         $topics = [
             [
-                'name'        => '博客相关',
+                'name'        => 'About Blog',
                 'description' => 'Something about the blog',
             ],
             [

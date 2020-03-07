@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
-class SeedTagData extends Migration
+class SeedColumnsData extends Migration
 {
     /**
      * Run the migrations.
@@ -14,29 +13,24 @@ class SeedTagData extends Migration
      */
     public function up()
     {
-        $tags = [
+        $columns = [
             [
-                'name'        => 'Eloquent',
+                'name'        => '文章',
+                'link'        => '/articles',
                 'description' => '',
             ],
             [
-                'name'        => 'Migration',
+                'name'        => '专题',
+                'link'        => '/topics',
                 'description' => '',
             ],
             [
-                'name'        => 'Artisan',
-                'description' => '',
-            ],
-            [
-                'name'        => 'Queue',
-                'description' => '',
-            ],
-            [
-                'name'        => 'ORM',
+                'name'        => '关于',
+                'link'        => '/about',
                 'description' => '',
             ],
         ];
-        DB::table('tags')->insert($tags);
+        DB::table('columns')->insert($columns);
     }
 
     /**
@@ -46,6 +40,6 @@ class SeedTagData extends Migration
      */
     public function down()
     {
-        DB::table('tags')->truncate();
+        DB::table('columns')->truncate();
     }
 }

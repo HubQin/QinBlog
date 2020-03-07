@@ -26,5 +26,13 @@ class RepliesTableSeeder extends Seeder
         });
 
         Reply::insert($replies->toArray());
+
+        $posts = Post::all();
+
+        // 更新文章回复数
+        foreach ($posts as $post) {
+            $post->view_count = $post->replies()->count();
+            $post->save();
+        }
     }
 }

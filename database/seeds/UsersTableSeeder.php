@@ -17,11 +17,12 @@ class UsersTableSeeder extends Seeder
 
         // 头像假数据
         $avatars = [
-            'http://120.79.167.67/uploads/images/avatar/201911/17/1_1573961301_WioWOheY9j.png',
-            'http://120.79.167.67/uploads/images/avatar/201911/17/1_1573961360_13SsPykBcA.png',
-            'http://120.79.167.67/uploads/images/avatar/201911/17/1_1573961394_njX2PIwj8P.png',
-            'http://120.79.167.67/uploads/images/avatar/201911/17/1_1573961421_oJGQ0KQunT.png',
-            'http://120.79.167.67/uploads/images/avatar/201911/17/1_1573961439_bywK8Z2HZQ.png',
+            'https://cdn.learnku.com/uploads/images/201710/14/1/s5ehp11z6s.png',
+            'https://cdn.learnku.com/uploads/images/201710/14/1/Lhd1SHqu86.png',
+            'https://cdn.learnku.com/uploads/images/201710/14/1/LOnMrqbHJn.png',
+            'https://cdn.learnku.com/uploads/images/201710/14/1/xAuDMxteQy.png',
+            'https://cdn.learnku.com/uploads/images/201710/14/1/ZqM7iaP4CR.png',
+            'https://cdn.learnku.com/uploads/images/201710/14/1/NDnzMutoxX.png',
         ];
 
         $users = factory(User::class)->times(10)->make()->each(function ($user, $index) use ($faker, $avatars){
@@ -34,7 +35,7 @@ class UsersTableSeeder extends Seeder
         $user         = User::find(1);
         $user->name   = 'Summer';
         $user->email  = 'summer@example.com';
-        $user->avatar = 'http://120.79.167.67/uploads/images/avatar/201911/17/1_1573961301_WioWOheY9j.png';
+        $user->avatar = 'https://cdn.learnku.com/uploads/images/201710/14/1/s5ehp11z6s.png';
         $user->save();
     }
 }

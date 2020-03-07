@@ -19,7 +19,7 @@ class CreateLinksTable extends Migration
             $table->string('url')->comment('链接地址');
             $table->string('logo')->default('')->comment('图片');
             $table->integer('sort')->unsigned()->index()->default(0)->comment('排序');
-            $table->tinyInteger('status')->unsigned()->index()->default(1)->comment('是否显示');
+            $table->boolean('status')->default(true)->comment('是否显示');
             $table->timestamps();
         });
     }
