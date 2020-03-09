@@ -1,0 +1,29 @@
+.CodeMirror {
+    font-size: 16px;
+    font-family: "YaHei Consolas Hybrid", Consolas, "微软雅黑", "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", courier, monospace;
+    line-height: 1.6;
+    height: 500px;
+    padding: 15px;
+
+    .CodeMirror-code {
+        .cm-comment {
+            background: none;
+            border-radius: 2px;
+            color: #0aa4d8;
+        }
+    }
+}
+
+.editor-preview-side {
+    font-size: 16px;
+    font-family: "YaHei Consolas Hybrid", Consolas, "微软雅黑", "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", courier, monospace;
+    line-height: 1.6;
+    padding: 15px;
+}
+
+/*修改代码块背景色及字体颜色*/
+.editor-preview-side pre, .editor-preview pre{
+    color: #abb2bf !important;
+    background: #282c34 !important;
+    padding: 1em;
+}

@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
     <script src="{{ asset('//at.alicdn.com/t/font_1594794_e4cjleg0csu.js') }}"></script>
 
 </head>

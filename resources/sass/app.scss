@@ -10,6 +10,14 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
+
+// markdown editor 「simplemde」
+@import "~simplemde/dist/simplemde.min.css";
+@import "markdown_editor";
+
+@import '~highlight.js/scss/tomorrow-night-eighties';
+
+
 /* universal */
 
 body {
@@ -113,4 +121,18 @@ body {
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
+}
+
+/*
+ * Simple Markdown
+ */
+
+.CodeMirror-fullscreen,
+.editor-preview-side,
+.editor-toolbar.fullscreen {
+    z-index: 1030;
+}
+
+.editor-preview {
+    z-index: 1030;
 }
