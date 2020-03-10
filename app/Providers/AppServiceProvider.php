@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Parsedown;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(Parsedown::class, function() {
+            return Parsedown::instance()->setSafeMode(true);
+        });
+        $this->app->alias(Parsedown::class, 'parsedown');
     }
 
     /**
@@ -23,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \App\Post::observe(\App\Observers\PostObserver::class);
     }
 }

@@ -26,10 +26,12 @@ class PostsController extends Controller
         return view('posts.create_and_edit', compact('post', 'categories', 'topics', 'tags'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         $data = $request->only(['title', 'category_id', 'body']);
-        $request->user()->posts()->create($data);
+        $post->fill($data);
+        $post->user_id = \Auth::id();
+        $post->save();
 
         return redirect()->route('posts.index');
     }

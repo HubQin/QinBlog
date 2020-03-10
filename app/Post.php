@@ -49,7 +49,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title', 'body', 'excerpt', 'slug', 'topic_id', 'category_id', 'icon'
+        'title', 'body', 'excerpt', 'slug', 'topic_id', 'category_id'
     ];
 
     /**
