@@ -36,16 +36,29 @@
                         </div>
 
                         <div class="form-group">
-                            <select class="form-control" name="category_id" required>
-                                <option value="" hidden disabled selected>请选择分类</option>
-                                @foreach ($categories as $value)
-                                    <option value="{{ $value->id }}" {{ $post->category_id == $value->id ? 'selected' : '' }}>{{ $value->name }}</option>
-                                @endforeach
-                            </select>
+                            <single-select-component
+                                field-name = "category_id"
+                                :options = "categories"
+                                @if(old('category_id', $post->category_id))
+                                :category-id = "{{ old('category_id', $post->category_id) }}"
+                                @endif
+                            >
+
+                            </single-select-component>
                         </div>
-                        <simplemde
+
+                        <div class="form-group">
+                            <multi-select-component
+                                field-name = "tag_ids"
+                                :tags = "tags"
+                                @if(old('tag_ids', $post->tag_ids))
+                                :tag-ids="{{ old('tag_ids', $post->tag_ids) }}"
+                                @endif
+                            ></multi-select-component>
+                        </div>
+                        <simplemde-component
                             content="{{ old('body', $post->body) }}"
-                        ></simplemde>
+                        ></simplemde-component>
                         <div class="well well-sm">
                             <button type="submit" class="btn btn-primary">
                                 <i class="far fa-save mr-2" aria-hidden="true"></i>
@@ -61,6 +74,14 @@
 @endsection
 
 @section('script')
-
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                tags: {!! json_encode($tags) !!},
+                categories: {!! json_encode($categories) !!},
+            }
+        })
+    </script>
 @endsection
 

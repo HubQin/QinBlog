@@ -12,16 +12,16 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('category')->orderBy('created_at', 'desc')->paginate(20);
+        $posts = Post::query()->with('category')->published()->recently()->paginate(20);
         $links = [];
         return view('posts.index', compact('posts', 'links'));
     }
 
     public function create(Post $post)
     {
-        $categories = Category::all();
+        $categories = Category::all(['id', 'name', 'icon'])->toArray();
         $topics = Topic::all();
-        $tags = Tag::all();
+        $tags = Tag::all(['id', 'name'])->toArray();
 
         return view('posts.create_and_edit', compact('post', 'categories', 'topics', 'tags'));
     }

@@ -7,14 +7,14 @@
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#{{ $post->category->icon }}"></use>
                         </svg>
-                        <span style="width: 20px; height: 20px;"><i class="media-object mr-3 iconfont {{ $post->category->icon }}" ></i></span>
+{{--                        <span style="width: 20px; height: 20px;"><i class="media-object mr-3 iconfont {{ $post->category->icon }}" ></i></span>--}}
                     </a>
-                </div>
+                    </div>
 
-                <div class="media-body">
+                    <div class="media-body">
 
-                    <div class="media-heading mt-0 mb-1">
-                        <a class="post-title" href="{{ route('posts.show', $post->id) }}">
+                        <div class="media-heading mt-0 mb-1">
+                            <a class="post-title" href="{{ route('posts.show', $post->id) }}">
                             {{ $post->title }}
                         </a>
                         <a class="float-right hide-on-mobile" href="{{ route('posts.show', $post->id) }}">

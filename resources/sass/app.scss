@@ -17,6 +17,8 @@
 
 @import '~highlight.js/scss/tomorrow-night-eighties';
 
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+
 
 /* universal */
 
@@ -106,6 +108,15 @@ body {
             margin-bottom: 12px;
             border: 0;
             border-top: 1px solid #dcebf5;
+        }
+    }
+
+    .media {
+        align-items: center;
+        justify-content: center;
+
+        .media-left {
+            margin-right: 10px;
         }
     }
 }

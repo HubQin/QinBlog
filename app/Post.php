@@ -45,6 +45,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereViewCount($value)
  * @mixin \Eloquent
+ * @property int $category_id
+ * @property-read \App\Category $category
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post published()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post recently()
  */
 class Post extends Model
 {
@@ -88,8 +93,32 @@ class Post extends Model
         return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id')->withTimestamps();
     }
 
+    /**
+     * 一篇文章属于一个分类
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * 已发布的文章
+     * @param $query
+     * @return mixed
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('is_show', 1);
+    }
+
+    public function scopeRecently($query)
+    {
+        return $query->orderBy('created_at', 'DESC');
+    }
+
+    public function getTagIdsAttribute()
+    {
+        return $this->tags()->allRelatedIds();
     }
 }
