@@ -29,6 +29,7 @@ window.Vue = require('vue');
 Vue.component('simplemde-component', require('./components/SimpleMdeComponent.vue').default);
 Vue.component('multi-select-component', require('./components/MultiSelectComponent.vue').default);
 Vue.component('single-select-component', require('./components/SingleSelectComponent.vue').default);
+Vue.component('toc', require('./components/TOC.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -20,7 +20,7 @@
                         {{ $post->reply_count }}
                     </div>
 
-                    <div class="topic-body mt-4 mb-4">
+                    <div class="post-body mt-4 mb-4">
                         {!! $post->body !!}
                     </div>
 
@@ -56,14 +56,14 @@
             <div class="card ">
                 <div class="card-body">
                     <div class="text-center">
-                        作者：{{ $post->user->name }}
+                        目录
                     </div>
                     <hr>
                     <div class="media">
-                        <div align="center">
-                            <a href="##">
-                                <img class="thumbnail img-fluid" src="{{ $post->user->avatar }}" width="300px" height="300px">
-                            </a>
+                        <div class="table-of-contents">
+                            <toc target-class=".post-body">
+
+                            </toc>
                         </div>
                     </div>
                 </div>
@@ -71,3 +71,10 @@
         </div>
     </div>
 @stop
+@section('script')
+    <script>
+        const app = new Vue({
+            el: "#app",
+        })
+    </script>
+@endsection
