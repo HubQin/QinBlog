@@ -16,8 +16,8 @@ Route::get('/', 'PagesController@root')->name('root');
 Auth::routes(['verify' => true]);
 
 
-Route::resource('posts', 'PostsController');
+Route::resource('posts', 'PostsController',  ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 
-Auth::routes();
+Route::get('posts/{post}/{slug?}', 'PostsController@show')->name('posts.show');
 
 Route::get('/home', 'HomeController@index')->name('home');

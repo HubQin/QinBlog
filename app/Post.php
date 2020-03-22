@@ -54,7 +54,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title', 'body', 'excerpt', 'slug', 'topic_id', 'category_id'
+        'title', 'body', 'excerpt', 'slug', 'topic_id', 'category_id', 'is_show'
     ];
 
     /**
@@ -120,5 +120,10 @@ class Post extends Model
     public function getTagIdsAttribute()
     {
         return $this->tags()->allRelatedIds();
+    }
+
+    public function link($params = [])
+    {
+        return route('posts.show', array_merge([$this->id, $this->slug], $params));
     }
 }

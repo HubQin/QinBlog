@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tag extends Model
 {
-    protected $fillable=['name'];
+    protected $fillable=['name', 'post_count'];
 
     public function posts()
     {
