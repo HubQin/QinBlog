@@ -23,22 +23,7 @@
         data() {
             return {
                 simplemde: null,
-                myContent: '## 说明\n' +
-                    'Laravel 内置了发送邮件重置密码的功能，本文分析其发送请求重置密码邮件的功能，了解其执行流程。首先，假设我们已经有一个大概长这样的`User`模型：\n' +
-                    '```\n' +
-                    '.\n' +
-                    '.\n' +
-                    '.\n' +
-                    'use Illuminate\\Foundation\\Auth\\User as Authenticatable;\n' +
-                    'use Illuminate\\Notifications\\Notifiable;\n' +
-                    'class User extends Authenticatable\n' +
-                    '{\n' +
-                    '    use Notifiable;\n' +
-                    '    .\n' +
-                    '    .\n' +
-                    '    .\n' +
-                    '}\n' +
-                    '```'
+                myContent: this.content
             }
         },
         mounted() {
@@ -49,6 +34,7 @@
                 window.SimpleMDE = require('simplemde');
                 this.simplemde = new SimpleMDE({
                     autofocus: true,
+                    status: false,
                     autosave: {
                         enabled: true,
                         uniqueId: Math.random().toString(36).substring(2),

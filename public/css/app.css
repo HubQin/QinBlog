@@ -17508,6 +17508,16 @@ body {
   margin-right: 10px;
 }
 
+.form-control input {
+  min-height: 40px;
+  display: block;
+  padding: 8px 40px 0 8px;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  font-size: 14px;
+}
+
 @media only screen and (max-width: 768px) {
   .hide-on-mobile {
     display: none !important;
@@ -17534,5 +17544,100 @@ body {
 
 .editor-preview {
   z-index: 1030;
+}
+
+#accordion .card-header {
+  padding: 0.75em 1em;
+  background: transparent;
+}
+
+#accordion h5 div {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+          align-items: center;
+  margin: 0;
+  font-weight: 600;
+  -webkit-transition: background 0.1s ease, color 0.1s ease;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+#accordion h5 div span {
+  font-size: 16px;
+  line-height: 17px;
+  height: 16px;
+}
+
+#accordion h5 div .icon {
+  width: 1.8em;
+  height: 1.8em;
+}
+
+/** placeholder color **/
+
+input::-webkit-input-placeholder, select::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ADADAD !important;
+  opacity: 1 !important;
+  /* Firefox */
+  font-size: 14px;
+}
+
+input::-moz-placeholder, select::-moz-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ADADAD !important;
+  opacity: 1 !important;
+  /* Firefox */
+  font-size: 14px;
+}
+
+input:-ms-input-placeholder, select:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ADADAD !important;
+  opacity: 1 !important;
+  /* Firefox */
+  font-size: 14px;
+}
+
+input::-ms-input-placeholder, select::-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ADADAD !important;
+  opacity: 1 !important;
+  /* Firefox */
+  font-size: 14px;
+}
+
+input::placeholder,
+select::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ADADAD !important;
+  opacity: 1 !important;
+  /* Firefox */
+  font-size: 14px;
+}
+
+input::-ms-input-placeholder,
+select::-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ADADAD !important;
+  font-size: 14px;
+}
+
+input::-ms-input-placeholder,
+select::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ADADAD !important;
+  font-size: 14px;
+}
+
+.form-control {
+  min-height: 40px;
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  font-size: 14px;
 }
 

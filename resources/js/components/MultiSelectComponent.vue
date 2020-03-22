@@ -1,18 +1,18 @@
 <template>
     <div>
-        <input type="hidden" :name="fieldName" :value="myTagIds">
+        <input type="hidden" :name="fieldName" :value="myTagIdsJson">
         <multiselect
             v-model="value"
             tag-placeholder="添加为新标签"
-            placeholder="请添加文章标签（下拉列表中选择或直接输入标签名）"
+            placeholder="请添加文章标签（选填，可选择，可直接输入）"
             select-label="按 Enter 选择"
             selected-label="已选"
-            deselect-label="按 Enter 移除"
             label="name"
             track-by="id"
             :options="options"
             :multiple="true"
             :taggable="true"
+            :hide-selected="true"
             @tag="addTag"
         ></multiselect>
     </div>
@@ -70,6 +70,19 @@
                 });
                 this.myTagIds = tagIds;
             }
+        },
+        computed: {
+            myTagIdsJson() {
+                return JSON.stringify(this.myTagIds)
+            }
         }
     }
 </script>
+<style lang="scss">
+    .multiselect__input {
+        min-height:26px;
+    }
+    .multiselect__placeholder {
+        padding-left: 5px;
+    }
+</style>

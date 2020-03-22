@@ -1917,6 +1917,11 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.myTagIds = tagIds;
     }
+  },
+  computed: {
+    myTagIdsJson: function myTagIdsJson() {
+      return JSON.stringify(this.myTagIds);
+    }
   }
 });
 
@@ -1955,7 +1960,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       simplemde: null,
-      myContent: '## 说明\n' + 'Laravel 内置了发送邮件重置密码的功能，本文分析其发送请求重置密码邮件的功能，了解其执行流程。首先，假设我们已经有一个大概长这样的`User`模型：\n' + '```\n' + '.\n' + '.\n' + '.\n' + "use Illuminate\\Foundation\\Auth\\User as Authenticatable;\n" + 'use Illuminate\\Notifications\\Notifiable;\n' + 'class User extends Authenticatable\n' + '{\n' + '    use Notifiable;\n' + '    .\n' + '    .\n' + '    .\n' + '}\n' + '```'
+      myContent: this.content
     };
   },
   mounted: function mounted() {
@@ -1968,6 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
       window.SimpleMDE = __webpack_require__(/*! simplemde */ "./node_modules/simplemde/src/js/simplemde.js");
       this.simplemde = new SimpleMDE({
         autofocus: true,
+        status: false,
         autosave: {
           enabled: true,
           uniqueId: Math.random().toString(36).substring(2),
@@ -2165,13 +2171,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   props: {
-    categoryId: {
+    id: {
       type: Number,
       "default": 0
     },
@@ -2182,20 +2191,34 @@ __webpack_require__.r(__webpack_exports__);
     fieldName: {
       type: String,
       required: true
+    },
+    isTaggable: {
+      type: Boolean,
+      "default": false
+    },
+    placeHolderAndLabels: {
+      type: Object,
+      "default": function _default() {
+        return new Object({
+          placeholder: "请选择文章分类",
+          selectLabel: "按 Enter 选择",
+          tagPlaceholder: "按 Enter 创建"
+        });
+      }
     }
   },
   data: function data() {
     return {
       value: "",
-      myCategoryId: this.categoryId
+      myId: this.id
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    if (this.categoryId && this.options.length > 0) {
+    if (this.id && this.options.length > 0) {
       this.options.map(function (item) {
-        if (item.id === _this.categoryId) {
+        if (item.id === _this.id) {
           _this.value = item;
         }
       });
@@ -2203,7 +2226,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     value: function value(n, o) {
-      this.myCategoryId = n.id;
+      this.myId = n.id;
+    }
+  },
+  methods: {
+    addTag: function addTag(newTag) {
+      var tag = {
+        name: newTag,
+        id: newTag + '~' + Math.random().toString(36).substring(2)
+      };
+      this.options.push(tag);
+      this.value = tag;
     }
   }
 });
@@ -18753,6 +18786,25 @@ if (!CodeMirror.mimeModes.hasOwnProperty("text/html"))
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".multiselect__input {\n  min-height: 26px;\n}\n.multiselect__placeholder {\n  padding-left: 5px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SingleSelectComponent.vue?vue&type=style&index=0&lang=scss&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SingleSelectComponent.vue?vue&type=style&index=0&lang=scss& ***!
@@ -18765,7 +18817,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".multiselect-category {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n          justify-content: flex-start;\n}\n.multiselect-category .icon {\n  width: 1em;\n  height: 1em;\n}\n.multiselect-category .option-slot, .multiselect-category .single-label-slot {\n  margin-left: 10px;\n  font-size: 14px;\n}\n.multiselect-category .single-label-slot {\n  height: 25px;\n  line-height: 25px;\n}", ""]);
+exports.push([module.i, ".multiselect-category {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n          justify-content: flex-start;\n}\n.multiselect-category .icon {\n  width: 1em;\n  height: 1em;\n}\n.multiselect-category .option-slot, .multiselect-category .single-label-slot {\n  margin-left: 10px;\n  font-size: 14px;\n}\n.multiselect-category .single-label-slot {\n  height: 25px;\n  line-height: 25px;\n}\n.multiselect__input {\n  min-height: 26px;\n}\n.multiselect__placeholder {\n  padding-left: 5px;\n}", ""]);
 
 // exports
 
@@ -78846,6 +78898,36 @@ module.exports = SimpleMDE;
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./MultiSelectComponent.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SingleSelectComponent.vue?vue&type=style&index=0&lang=scss&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SingleSelectComponent.vue?vue&type=style&index=0&lang=scss& ***!
@@ -80465,21 +80547,21 @@ var render = function() {
     [
       _c("input", {
         attrs: { type: "hidden", name: _vm.fieldName },
-        domProps: { value: _vm.myTagIds }
+        domProps: { value: _vm.myTagIdsJson }
       }),
       _vm._v(" "),
       _c("multiselect", {
         attrs: {
           "tag-placeholder": "添加为新标签",
-          placeholder: "请添加文章标签（下拉列表中选择或直接输入标签名）",
+          placeholder: "请添加文章标签（选填，可选择，可直接输入）",
           "select-label": "按 Enter 选择",
           "selected-label": "已选",
-          "deselect-label": "按 Enter 移除",
           label: "name",
           "track-by": "id",
           options: _vm.options,
           multiple: true,
-          taggable: true
+          taggable: true,
+          "hide-selected": true
         },
         on: { tag: _vm.addTag },
         model: {
@@ -80549,7 +80631,7 @@ var render = function() {
     [
       _c("input", {
         attrs: { type: "hidden", name: _vm.fieldName },
-        domProps: { value: _vm.myCategoryId }
+        domProps: { value: _vm.myId }
       }),
       _vm._v(" "),
       _c("multiselect", {
@@ -80557,51 +80639,76 @@ var render = function() {
           "hide-selected": true,
           "track-by": "id",
           label: "name",
-          placeholder: "请选择文章分类",
-          "select-label": "按 Enter 选择",
+          placeholder: _vm.placeHolderAndLabels.placeholder,
+          "select-label": _vm.placeHolderAndLabels.selectLabel,
+          "tag-placeholder": _vm.placeHolderAndLabels.tagPlaceholder,
           options: _vm.options,
-          "allow-empty": false
+          "allow-empty": false,
+          taggable: _vm.isTaggable
         },
-        scopedSlots: _vm._u([
-          {
-            key: "singleLabel",
-            fn: function(ref) {
-              var option = ref.option
-              return [
-                _c("div", { staticClass: "multiselect-category" }, [
-                  _c(
-                    "svg",
-                    { staticClass: "icon", attrs: { "aria-hidden": "true" } },
-                    [_c("use", { attrs: { "xlink:href": "#" + option.icon } })]
-                  ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "single-label-slot" }, [
-                    _vm._v(_vm._s(option.name))
-                  ])
-                ])
-              ]
+        on: { tag: _vm.addTag },
+        scopedSlots: _vm._u(
+          [
+            {
+              key: "singleLabel",
+              fn: function(ref) {
+                var option = ref.option
+                return !_vm.isTaggable
+                  ? [
+                      _c("div", { staticClass: "multiselect-category" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "icon",
+                            attrs: { "aria-hidden": "true" }
+                          },
+                          [
+                            _c("use", {
+                              attrs: { "xlink:href": "#" + option.icon }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "single-label-slot" }, [
+                          _vm._v(_vm._s(option.name))
+                        ])
+                      ])
+                    ]
+                  : undefined
+              }
+            },
+            {
+              key: "option",
+              fn: function(ref) {
+                var option = ref.option
+                return !_vm.isTaggable
+                  ? [
+                      _c("div", { staticClass: "multiselect-category" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "icon",
+                            attrs: { "aria-hidden": "true" }
+                          },
+                          [
+                            _c("use", {
+                              attrs: { "xlink:href": "#" + option.icon }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "option-slot" }, [
+                          _vm._v(_vm._s(option.name))
+                        ])
+                      ])
+                    ]
+                  : undefined
+              }
             }
-          },
-          {
-            key: "option",
-            fn: function(ref) {
-              var option = ref.option
-              return [
-                _c("div", { staticClass: "multiselect-category" }, [
-                  _c(
-                    "svg",
-                    { staticClass: "icon", attrs: { "aria-hidden": "true" } },
-                    [_c("use", { attrs: { "xlink:href": "#" + option.icon } })]
-                  ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "option-slot" }, [
-                    _vm._v(_vm._s(option.name))
-                  ])
-                ])
-              ]
-            }
-          }
-        ]),
+          ],
+          null,
+          true
+        ),
         model: {
           value: _vm.value,
           callback: function($$v) {
@@ -92889,7 +92996,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MultiSelectComponent_vue_vue_type_template_id_14cb49d3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MultiSelectComponent.vue?vue&type=template&id=14cb49d3& */ "./resources/js/components/MultiSelectComponent.vue?vue&type=template&id=14cb49d3&");
 /* harmony import */ var _MultiSelectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MultiSelectComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/MultiSelectComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _MultiSelectComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MultiSelectComponent.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -92897,7 +93006,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _MultiSelectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _MultiSelectComponent_vue_vue_type_template_id_14cb49d3___WEBPACK_IMPORTED_MODULE_0__["render"],
   _MultiSelectComponent_vue_vue_type_template_id_14cb49d3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -92926,6 +93035,22 @@ component.options.__file = "resources/js/components/MultiSelectComponent.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MultiSelectComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiSelectComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./MultiSelectComponent.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MultiSelectComponent.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_MultiSelectComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

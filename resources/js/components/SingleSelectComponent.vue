@@ -1,16 +1,19 @@
 <template>
     <div>
-        <input type="hidden" :name="fieldName" :value="myCategoryId">
+        <input type="hidden" :name="fieldName" :value="myId">
         <multiselect v-model="value"
                      :hide-selected="true"
                      track-by="id"
                      label="name"
-                     placeholder="请选择文章分类"
-                     select-label="按 Enter 选择"
+                     :placeholder="placeHolderAndLabels.placeholder"
+                     :select-label="placeHolderAndLabels.selectLabel"
+                     :tag-placeholder="placeHolderAndLabels.tagPlaceholder"
                      :options="options"
                      :allow-empty="false"
+                     :taggable="isTaggable"
+                     @tag="addTag"
         >
-            <template slot="singleLabel" slot-scope="{ option }">
+            <template slot="singleLabel" slot-scope="{ option }" v-if="!isTaggable">
                 <div class="multiselect-category">
                     <svg class="icon" aria-hidden="true">
                         <use :xlink:href="'#' + option.icon"></use>
@@ -18,7 +21,7 @@
                     <span class="single-label-slot">{{ option.name }}</span>
                 </div>
             </template>
-            <template slot="option" slot-scope="{ option }">
+            <template slot="option" slot-scope="{ option }" v-if="!isTaggable">
                 <div class="multiselect-category">
                     <svg class="icon" aria-hidden="true">
                         <use :xlink:href="'#' + option.icon"></use>
@@ -35,7 +38,7 @@
     export default {
         components: { Multiselect },
         props: {
-            categoryId: {
+            id: {
                 type: Number,
                 default: 0
             },
@@ -47,17 +50,29 @@
                 type: String,
                 required: true,
             },
+            isTaggable: {
+                type: Boolean,
+                default: false
+            },
+            placeHolderAndLabels: {
+                type: Object,
+                default: () => new Object({
+                            placeholder: "请选择文章分类",
+                            selectLabel: "按 Enter 选择",
+                            tagPlaceholder: "按 Enter 创建"
+                })
+            }
         },
         data () {
             return {
                 value: "",
-                myCategoryId: this.categoryId
+                myId: this.id
             }
         },
         mounted() {
-            if (this.categoryId && this.options.length > 0) {
+            if (this.id && this.options.length > 0) {
                 this.options.map((item) => {
-                    if (item.id === this.categoryId) {
+                    if (item.id === this.id) {
                         this.value = item;
                     }
                 })
@@ -65,7 +80,17 @@
         },
         watch: {
             value(n, o) {
-                this.myCategoryId = n.id;
+                this.myId = n.id;
+            }
+        },
+        methods: {
+            addTag(newTag) {
+                const tag = {
+                    name: newTag,
+                    id: newTag + '~' + Math.random().toString(36).substring(2)
+                }
+                this.options.push(tag);
+                this.value = tag;
             }
         }
     }
@@ -83,12 +108,18 @@
 
         .option-slot, .single-label-slot {
             margin-left: 10px;
-            font-size:14px;
+            font-size: 14px;
         }
 
         .single-label-slot {
             height: 25px;
             line-height: 25px;
         }
+    }
+    .multiselect__input {
+        min-height:26px;
+    }
+    .multiselect__placeholder {
+        padding-left: 5px;
     }
 </style>

@@ -121,6 +121,16 @@ body {
     }
 }
 
+.form-control input {
+    min-height: 40px;
+    display: block;
+    padding: 8px 40px 0 8px;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    font-size: 14px;
+}
+
 @media only screen and (max-width: 768px) {
     .hide-on-mobile {
         display: none !important;
@@ -146,4 +156,64 @@ body {
 
 .editor-preview {
     z-index: 1030;
+}
+
+#accordion {
+    .card-header {
+        padding: 0.75em 1em;
+        background: transparent;
+    }
+    h5 {
+        div {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0;
+            font-weight: 600;
+            -webkit-transition: background .1s ease,color .1s ease;
+            transition: background .1s ease,color .1s ease;
+
+            span {
+                font-size: 16px;
+                line-height: 17px;
+                height: 16px;
+            }
+
+            .icon {
+                width: 1.8em;
+                height: 1.8em;
+            }
+        }
+
+    }
+
+}
+
+/** placeholder color **/
+input, select {
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #ADADAD !important;
+        opacity: 1 !important; /* Firefox */
+        font-size: 14px;
+    }
+
+    &::-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #ADADAD !important;
+        font-size: 14px;
+    }
+
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: #ADADAD !important;
+        font-size: 14px;
+    }
+}
+
+
+.form-control {
+    min-height: 40px;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    font-size: 14px;
 }
