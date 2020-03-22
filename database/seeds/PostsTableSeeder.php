@@ -26,7 +26,8 @@ class PostsTableSeeder extends Seeder
 
         $postArray = $posts->toArray();
 
-        Post::insert($postArray);
+        // 使用DB避免触发模型事件
+        \DB::table('posts')->insert($postArray);
 
         // 给文章随机打标签
         $posts = Post::all();

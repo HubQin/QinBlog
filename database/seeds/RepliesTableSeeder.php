@@ -25,14 +25,14 @@ class RepliesTableSeeder extends Seeder
             $reply->status = 1;
         });
 
-        Reply::insert($replies->toArray());
+        \DB::table('replies')->insert($replies->toArray());
 
         $posts = Post::all();
 
         // 更新文章回复数
         foreach ($posts as $post) {
             $post->view_count = $post->replies()->count();
-            $post->save();
+            \DB::table('posts')->where('id', $post->id)->update(['view_count' => $post->view_count]);
         }
     }
 }

@@ -17,7 +17,7 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->string('name')->index()->comment('专题名称');
             $table->text('description')->nullable()->comment('专题描述');
-            $table->integer('order')->unsigned()->default(0)->comment('排序');
+            $table->integer('post_count')->unsigned()->default(0)->comment('文章数');
             $table->timestamps();
         });
     }

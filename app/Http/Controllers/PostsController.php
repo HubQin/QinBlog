@@ -98,4 +98,12 @@ class PostsController extends Controller
             return redirect()->back()->withErrors(['error' => $result->getMessage()]);
         }
     }
+
+    public function destroy(Post $post)
+    {
+        $this->authorize('own', $post);
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('success', '删除成功！');
+    }
 }

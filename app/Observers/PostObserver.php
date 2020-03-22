@@ -21,4 +21,11 @@ class PostObserver
             dispatch(new TranslateSlug($post));
         }
     }
+
+    public function created()
+    {
+        // 更新标签文章数
+
+        // 更新分类文章数
+    }
 }
