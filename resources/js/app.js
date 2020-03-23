@@ -10,6 +10,10 @@ window.hljs = require('highlight.js');
 // 代码高亮初始化
 hljs.initHighlightingOnLoad();
 
+// 图片拖动上传
+require('inline-attachment/src/inline-attachment.js');
+require('inline-attachment/src/codemirror-4.inline-attachment');
+
 window.Vue = require('vue');
 
 

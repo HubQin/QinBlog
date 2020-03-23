@@ -20,4 +20,6 @@ Route::resource('posts', 'PostsController',  ['only' => ['index', 'create', 'sto
 
 Route::get('posts/{post}/{slug?}', 'PostsController@show')->name('posts.show');
 
+Route::post('posts/upload_post_image', 'PostsController@uploadPostImage')->name('posts.upload_post_image');
+
 Route::get('/home', 'HomeController@index')->name('home');

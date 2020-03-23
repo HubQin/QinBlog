@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\PostRequest;
+use App\Services\ImageUploader;
 use App\Services\PostService;
 use App\Tag;
 use App\Topic;
@@ -105,5 +106,29 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index')->with('success', '删除成功！');
+    }
+
+    /**
+     * 上传文章图片
+     * @param Request $request
+     * @param ImageUploader $uploader
+     * @return array
+     */
+    public function uploadPostImage(Request $request, ImageUploader $uploader)
+    {
+        if ($file = $request->file) {
+            $result = $uploader->save($file, 'posts', 1024);
+            if ($result) {
+                return [
+                    'error' => '上传成功',
+                    'filename'=>$result['path']
+                ];
+            }
+        }
+
+        return [
+            'error'    => '上传失败',
+            'filename' => ''
+        ];
     }
 }

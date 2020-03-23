@@ -224,6 +224,18 @@
                 this.simplemde.codemirror.on("change", () => {
                     this.myContent = this.simplemde.value();
                 });
+
+                // 拖拽上传
+                const inlineAttachmentConfig = {
+                    uploadUrl: '/posts/upload_post_image',
+                    extraHeaders: {
+                        'X-CSRF-Token': document.head.querySelector('meta[name="csrf-token"]').content
+                    },
+                    progressText: '![图片上传中...]()',
+                    urlText: "![image]({filename})",
+                    errorText: "图片上传失败！",
+                };
+                inlineAttachment.editors.codemirror4.attach(this.simplemde.codemirror, inlineAttachmentConfig);
             },
             highlightCode(html) {
                 return hljs.highlightAuto(html).value;

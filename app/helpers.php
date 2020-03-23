@@ -23,7 +23,7 @@ function make_excerpt($value, $length = 200)
 
 function html_to_markdown($html)
 {
-    $converter = app(\League\HTMLToMarkdown\HtmlConverter::class);
+    $converter = app(\League\HTMLToMarkdown\HtmlConverter::class, ['options' => ['header_style' => 'atx']]);
     $markdown = $converter->convert($html);
     return $markdown;
 }

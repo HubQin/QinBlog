@@ -23,7 +23,6 @@
             this.$nextTick(() => {
                 const toc = this.$refs.toc;
                 const matches = document.querySelectorAll(`${this.targetClass} h2, ${this.targetClass} h3`);
-                console.log(matches)
                 matches.forEach(item => {
                     item.id = '#' + Math.random().toString(36).substring(7);
                     if (item.tagName === 'H2') {
