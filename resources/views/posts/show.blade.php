@@ -6,7 +6,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <div class="card ">
                 <div class="card-body">
                     <h1 class="text-center mt-3 mb-3">
@@ -20,7 +20,7 @@
                         {{ $post->reply_count }}
                     </div>
 
-                    <div class="post-body mt-4 mb-4">
+                    <div class="post-body markdown-body mt-4 mb-4">
                         {!! $post->body !!}
                     </div>
 
@@ -54,7 +54,7 @@
         </div>
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
             <div class="card ">
-                <div class="card-body">
+                <div class="card-body toc-container">
                     <div class="text-center">
                         目录
                     </div>

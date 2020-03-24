@@ -17411,6 +17411,13 @@ readers do not read off random characters that represent icons */
 body {
   font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
+  color: #404040;
+  margin-bottom: 60px;
+}
+
+body h1 {
+  font-weight: 600;
+  font-size: 1.9em;
 }
 
 /* header */
@@ -17432,9 +17439,32 @@ html {
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+.markdown-body {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.markdown-body h2 {
+  font-weight: 600;
+  font-size: 1.42em;
+  margin: 1.42em 0 0.5em;
+}
+
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 1.42em 0 0.5em;
+}
+
+.markdown-body image {
+  max-width: 100%;
+}
+
+.markdown-body pre code {
+  padding: 1.1em;
 }
 
 .footer {
@@ -17639,5 +17669,9 @@ select::-ms-input-placeholder {
   border: 1px solid #e8e8e8;
   background: #fff;
   font-size: 14px;
+}
+
+.toc-container {
+  padding: 1.25rem 0.8rem;
 }
 

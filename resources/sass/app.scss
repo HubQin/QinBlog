@@ -25,6 +25,13 @@
 body {
     font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     font-size: 14px;
+    color: #404040;
+    margin-bottom: 60px;
+
+    h1 {
+        font-weight: 600;
+        font-size: 1.9em;
+    }
 }
 
 /* header */
@@ -45,9 +52,30 @@ html {
     min-height: 100%;
 }
 
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
+.markdown-body {
+    font-size: 16px;
+    line-height: 1.8;
+
+    h2 {
+        font-weight: 600;
+        font-size: 1.42em;
+        margin: 1.42em 0 0.5em;
+    }
+    h3,h4,h5,h6 {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin: 1.42em 0 0.5em;
+    }
+
+    image {
+        max-width: 100%;
+    }
+
+    pre {
+        code {
+            padding: 1.1em;
+        }
+    }
 }
 
 .footer {
@@ -216,4 +244,8 @@ input, select {
     border: 1px solid #e8e8e8;
     background: #fff;
     font-size: 14px;
+}
+
+.toc-container {
+    padding: 1.25rem 0.8rem;
 }
