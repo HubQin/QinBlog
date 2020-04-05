@@ -35,6 +35,8 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
  * @property-read int|null $posts_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAvatar($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @property-read int|null $comments_count
  */
 class User extends Authenticatable
 {
@@ -70,5 +72,10 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -44,13 +44,13 @@
 
                 </div>
             </div>
-            {{-- 用户回复列表 --}}
-            {{--<div class="card topic-reply mt-4">
+            {{-- 用户评论列表 --}}
+            <div class="card post-comment mt-4">
                 <div class="card-body">
-                    @includeWhen(AUth::check(), 'posts._reply_box', ['topic' => $post])
-                    @include('posts._reply_list', ['replies' => $post->replies()->with('user')->get()])
+                    @includeWhen(Auth::check(), 'posts._comment_box', ['post' => $post])
+                    @include('posts._comment_list', ['comments' => $post->comments()->with(['user', 'replies', 'replies.user'])->get()])
                 </div>
-            </div>--}}
+            </div>
         </div>
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
             <div class="card ">
@@ -75,6 +75,26 @@
     <script>
         const app = new Vue({
             el: "#app",
+        })
+
+        document.querySelectorAll("li[name^='comment']").forEach((item) => {
+            let replyIcon = item.getElementsByClassName("reply-icon")[0];
+            let replyBox = item.getElementsByClassName("reply-box")[0];
+            let cancelBtn = item.getElementsByClassName("reply-box-cancel-btn")[0];
+
+            item.addEventListener('mouseover', function () {
+                replyIcon.style.display = "block";
+            });
+            item.addEventListener('mouseout', function () {
+                replyIcon.style.display = "none";
+            });
+            replyIcon.addEventListener('click', function () {
+                replyBox.style.display = "block";
+            })
+            cancelBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.parentNode.parentNode.style.display = "none";
+            })
         })
     </script>
 @endsection

@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $icon 用于文章列表显示的图标
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Reply[] $replies
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $replies
  * @property-read int|null $replies_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
@@ -50,6 +50,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post published()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post recently()
+ * @property int $sort 用于专题排序
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read mixed $tag_ids
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereSort($value)
  */
 class Post extends Model
 {
@@ -63,7 +68,7 @@ class Post extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -76,12 +81,12 @@ class Post extends Model
     }
 
     /**
-     * 一篇文章对应多条回复
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * 定义文章与评论一对多多态关联
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function replies()
+    public function comments()
     {
-        return $this->hasMany(Reply::class, 'post_id', 'id');
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 
     /**

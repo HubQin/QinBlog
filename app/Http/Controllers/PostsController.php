@@ -61,7 +61,6 @@ class PostsController extends Controller
         if (! empty($post->slug) && $post->slug != $request->slug) {
             return redirect()->to($post->link(), 301);
         }
-
         return view('posts.show', compact('post'));
     }
 

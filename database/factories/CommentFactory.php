@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Reply;
+use App\Comment;
 use Faker\Generator as Faker;
 
-$factory->define(Reply::class, function (Faker $faker) {
+$factory->define(Comment::class, function (Faker $faker) {
     $time = $faker->dateTimeThisMonth();
     return [
         'content' => $faker->sentence(),

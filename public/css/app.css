@@ -17675,3 +17675,31 @@ select::-ms-input-placeholder {
   padding: 1.25rem 0.8rem;
 }
 
+.posts-show-page .nested-comment {
+  margin-left: 3em;
+  margin-top: 1em;
+}
+
+.posts-show-page .nested-comment li:first-child {
+  padding-top: 1em;
+  border-top: 1px dashed #0000001a;
+}
+
+.posts-show-page .reply-icon {
+  float: right;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.posts-show-page .reply-icon:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.posts-show-page .comment-title-right {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+

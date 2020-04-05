@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Topic whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Topic whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $post_count 文章数
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Topic wherePostCount($value)
  */
 class Topic extends Model
 {
