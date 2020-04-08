@@ -24,6 +24,7 @@ class PostObserver
 
     public function created()
     {
+        // TODO
         // 更新标签文章数
 
         // 更新分类文章数

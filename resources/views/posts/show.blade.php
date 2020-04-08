@@ -48,7 +48,7 @@
             <div class="card post-comment mt-4">
                 <div class="card-body">
                     @includeWhen(Auth::check(), 'posts._comment_box', ['post' => $post])
-                    @include('posts._comment_list', ['comments' => $post->comments()->with(['user', 'replies', 'replies.user'])->get()])
+                    @include('posts._comment_list', ['comments' => $post->comments()->with(['user:id,name,avatar', 'replies', 'replies.user:id,name,avatar'])->get()])
                 </div>
             </div>
         </div>

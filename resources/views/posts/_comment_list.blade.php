@@ -34,9 +34,7 @@
                     </div>
                 </div>
                 <div class="comment-content text-secondary">
-                    @if($comment->deleted_at)
-                        该评论已删除
-                    @elseif(! $comment->approved)
+                    @if(! $comment->approved)
                         评论审核中
                     @else
                     {!! $comment->content !!}
@@ -59,7 +57,7 @@
                 @endauth
             </div>
         </li>
-        @include('posts._comment_list', ['comments' => $comment->replies])
+        @includeWhen(count($comment->replies), 'posts._comment_list', ['comments' => $comment->replies])
 
         @if ( ! $loop->last)
             <hr>

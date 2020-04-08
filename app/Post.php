@@ -55,6 +55,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $comments_count
  * @property-read mixed $tag_ids
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereSort($value)
+ * @property int $comment_count 评论数量
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCommentCount($value)
  */
 class Post extends Model
 {

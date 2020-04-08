@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Http\Requests\PostRequest;
 use App\Services\ImageUploader;
 use App\Services\PostService;
