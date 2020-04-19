@@ -23,6 +23,14 @@ class SeedTopicData extends Migration
                 'name'        => 'Laravel 源码分析',
                 'description' => '',
             ],
+            [
+                'name'        => '测试专题1',
+                'description' => '',
+            ],
+            [
+                'name'        => '测试专题2',
+                'description' => '',
+            ],
         ];
         DB::table('topics')->insert($topics);
     }

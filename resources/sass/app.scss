@@ -9,6 +9,7 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
+@import "~@fortawesome/fontawesome-free/scss/v4-shims.scss";
 
 
 // markdown editor 「simplemde」
@@ -102,7 +103,7 @@ html {
 }
 
 /* Post Index Page */
-.posts-index-page {
+.root-page, .posts-index-page, .topics-index-page, .categories-show-page, .tags-show-page, .topics-show-page, .archives-show-page{
     .post-list {
         .nav > li > a {
             position: relative;
@@ -148,6 +149,15 @@ html {
         }
     }
 }
+.topics-index-page .topic-card {
+    margin-bottom: 1em;
+}
+
+.sidebar a {
+    &:hover {
+        text-decoration: none;
+    }
+}
 
 .form-control input {
     min-height: 40px;
@@ -166,7 +176,7 @@ html {
 }
 
 .icon {
-    width: 2em; height: 2em;
+    width: 1.5em; height: 1.5em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;

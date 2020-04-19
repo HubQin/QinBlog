@@ -7,19 +7,20 @@
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#{{ $post->category->icon }}"></use>
                         </svg>
-{{--                        <span style="width: 20px; height: 20px;"><i class="media-object mr-3 iconfont {{ $post->category->icon }}" ></i></span>--}}
                     </a>
-                    </div>
+                </div>
 
-                    <div class="media-body">
+                <div class="media-body">
 
-                        <div class="media-heading mt-0 mb-1">
-                            <a class="post-title" href="{{ $post->link() }}">
+                    <div class="media-heading mt-0 mb-1">
+                        <a class="post-title" href="{{ $post->link() }}">
                             {{ $post->title }}
                         </a>
-                            <a class="float-right hide-on-mobile" href="{{ $post->link() }}">
+                        @if(!isset($topics))
+                        <a class="float-right hide-on-mobile" href="{{ $post->link() }}">
                             <span class="post-time"> {{ $post->created_at }} </span>
                         </a>
+                        @endif
                     </div>
                 </div>
             </li>

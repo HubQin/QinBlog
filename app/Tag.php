@@ -34,4 +34,14 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class);
     }
+
+    public function tagsList()
+    {
+        $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light'];
+
+        return static::all()->map(function ($tag) use ($colors) {
+            $tag->color = $colors[array_rand($colors)];
+            return $tag;
+        });
+    }
 }

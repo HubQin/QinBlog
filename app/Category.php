@@ -25,4 +25,17 @@ class Category extends Model
     public $timestamps = false;
 
     protected $fillable = ['name', 'icon', 'description'];
+
+    public function categoryList()
+    {
+        // 输出有文章的分类
+        return static::with('posts')->whereHas('posts', function ($q) {
+            $q->where('is_show', 1);
+        })->get();
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

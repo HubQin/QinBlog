@@ -19,7 +19,8 @@
         "league/html-to-markdown": "^4.9",
         "mews/purifier": "^3.2",
         "overtrue/laravel-lang": "^3.0",
-        "overtrue/pinyin": "~4.0"
+        "overtrue/pinyin": "~4.0",
+        "socialiteproviders/github": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

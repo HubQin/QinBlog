@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 /**
  * App\Post
@@ -79,7 +80,7 @@ class Post extends Model
      */
     public function topic()
     {
-        return $this->belongsTo(Topic::class, 'topic_id', 'id');
+        return $this->belongsTo(Topic::class, 'topic_id', 'id')->where('topic_id', '>', 0);
     }
 
     /**
@@ -132,5 +133,12 @@ class Post extends Model
     public function link($params = [])
     {
         return route('posts.show', array_merge([$this->id, $this->slug], $params));
+    }
+
+    public function archiveList()
+    {
+        return static::recently()->published()->get()->groupBy(function ($post) {
+            return Carbon::parse($post->created_at)->format('Y-m');
+        });
     }
 }

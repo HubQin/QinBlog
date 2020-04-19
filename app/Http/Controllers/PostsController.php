@@ -12,6 +12,7 @@ use App\Topic;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class PostsController extends Controller
 {
@@ -20,11 +21,14 @@ class PostsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function index(Request $request)
+    public function index(Request $request, Category $category, Tag $tag, Post $post)
     {
         $posts = Post::query()->with('category')->published()->recently()->paginate(20);
-        $links = [];
-        return view('posts.index', compact('posts', 'links'));
+        $tags = $tag->tagsList();
+        $categories = $category->categoryList();
+        $archives = $post->archiveList();
+
+        return view('posts.index', compact('posts', 'tags', 'categories', 'archives'));
     }
 
     public function create(Post $post)
@@ -106,6 +110,22 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index')->with('success', '删除成功！');
+    }
+
+    public function archiveShow($year_month, Post $post, Tag $tag, Category $category)
+    {
+        list($year, $month) = explode('-', $year_month);
+        $posts = $post->query()
+                ->recently()
+                ->published()
+                ->whereYear('created_at', $year)
+                ->whereMonth('created_at', $month)->paginate(20);
+
+        $tags = $tag->tagsList();
+        $categories = $category->categoryList();
+        $archives = $post->archiveList();
+
+        return view('posts.index', compact('posts', 'tags', 'categories', 'archives', 'year', 'month'));
     }
 
     /**

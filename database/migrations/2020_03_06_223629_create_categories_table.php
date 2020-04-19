@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name')->index()->comment('名称');
             $table->string('icon')->comment('图标');
+            $table->integer('post_count')->default(0)->comment('分类下的文章总数');
             $table->text('description')->nullable()->comment('描述');
         });
     }
