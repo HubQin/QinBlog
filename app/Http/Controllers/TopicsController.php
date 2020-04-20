@@ -20,7 +20,7 @@ class TopicsController extends Controller
         return view('topics.index', compact('topics'));
 }
 
-    public function show(Request $request, Topic $topic, Tag $tag, Category $category, Post $post)
+    public function show(Request $request, Topic $topic)
     {
         $posts = Post::query()
             ->with('category')
@@ -29,10 +29,6 @@ class TopicsController extends Controller
             ->where('topic_id', $topic->id)
             ->paginate(20);
 
-        $tags = $tag->tagsList();
-        $categories = $category->categoryList();
-        $archives = $post->archiveList();
-
-        return view('posts.index', compact('posts', 'topic', 'tags', 'categories', 'archives'));
+        return view('posts.index', compact('posts', 'topic'));
     }
 }

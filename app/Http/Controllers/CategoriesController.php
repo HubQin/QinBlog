@@ -9,19 +9,15 @@ use App\Post;
 
 class CategoriesController extends Controller
 {
-    public function show(Request $request, Category $category, Tag $tag, Post $post)
+    public function show(Request $request, Category $category)
     {
-        $posts = $post->query()
+        $posts = Post::query()
             ->with('category')
             ->published()
             ->recently()
             ->where('category_id', $category->id)
             ->paginate(20);
 
-        $tags = $tag->tagsList();
-        $categories = $category->categoryList();
-        $archives = $post->archiveList();
-
-        return view('posts.index', compact('posts', 'category', 'tags', 'categories', 'archives'));
+        return view('posts.index', compact('posts', 'category'));
     }
 }

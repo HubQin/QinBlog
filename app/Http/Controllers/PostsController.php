@@ -21,14 +21,10 @@ class PostsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show', 'search', 'archiveShow']]);
     }
 
-    public function index(Request $request, Category $category, Tag $tag, Post $post)
+    public function index(Request $request)
     {
         $posts = Post::query()->with('category')->published()->recently()->paginate(20);
-        $tags = $tag->tagsList();
-        $categories = $category->categoryList();
-        $archives = $post->archiveList();
-
-        return view('posts.index', compact('posts', 'tags', 'categories', 'archives'));
+        return view('posts.index', compact('posts'));
     }
 
     public function create(Post $post)

@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
-    public function show(Request $request, Tag $tag, Category $category, Post $post)
+    public function show(Request $request, Tag $tag)
     {
-        $posts = $post->query()
+        $posts = Post::query()
             ->with('category')
             ->published()
             ->recently()
@@ -20,10 +20,6 @@ class TagsController extends Controller
             })
             ->paginate(20);
 
-        $tags = $tag->tagsList();
-        $categories = $category->categoryList();
-        $archives = $post->archiveList();
-
-        return view('posts.index', compact('posts', 'tag', 'categories', 'tags', 'archives'));
+        return view('posts.index', compact('posts', 'tag'));
     }
 }
