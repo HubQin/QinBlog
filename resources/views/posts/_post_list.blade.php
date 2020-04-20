@@ -3,7 +3,7 @@
         @foreach ($posts as $post)
             <li class="media">
                 <div class="media-left">
-                    <a href="#">
+                    <a href="{{ route('categories.show', ['category' => $post->category->id]) }}">
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#{{ $post->category->icon }}"></use>
                         </svg>

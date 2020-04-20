@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Laravel\Scout\Searchable;
 
 /**
  * App\Post
@@ -61,6 +62,8 @@ use Carbon\Carbon;
  */
 class Post extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'title', 'body', 'excerpt', 'slug', 'topic_id', 'category_id', 'is_show'
     ];
@@ -140,5 +143,10 @@ class Post extends Model
         return static::recently()->published()->get()->groupBy(function ($post) {
             return Carbon::parse($post->created_at)->format('Y-m');
         });
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->only('id', 'title', 'body');
     }
 }

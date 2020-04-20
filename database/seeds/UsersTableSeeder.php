@@ -36,6 +36,7 @@ class UsersTableSeeder extends Seeder
         $user->name   = 'Summer';
         $user->email  = 'summer@example.com';
         $user->avatar = 'https://cdn.learnku.com/uploads/images/201710/14/1/s5ehp11z6s.png';
+        $user->is_admin = true;
         $user->save();
     }
 }

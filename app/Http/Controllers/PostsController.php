@@ -18,7 +18,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'archiveShow']]);
     }
 
     public function index(Request $request, Category $category, Tag $tag, Post $post)
@@ -63,7 +63,7 @@ class PostsController extends Controller
 
     public function show(Post $post, Request $request)
     {
-        if (! empty($post->slug) && $post->slug != $request->slug) {
+        if (!empty($post->slug) && $post->slug != $request->slug) {
             return redirect()->to($post->link(), 301);
         }
         return view('posts.show', compact('post'));
@@ -85,8 +85,7 @@ class PostsController extends Controller
     public function update(Post $post, PostRequest $request, PostService $postService)
     {
         $this->authorize('own', $post);
-
-        $data = $request->only(['title', 'body', 'category_id']);
+        $data = $request->only(['title', 'body', 'category_id', 'is_show']);
         $post->fill($data);
 
         // 如果有填写slug字段，且Slug已修改，创建一个唯一的以“-”连接的Slug
@@ -115,11 +114,11 @@ class PostsController extends Controller
     public function archiveShow($year_month, Post $post, Tag $tag, Category $category)
     {
         list($year, $month) = explode('-', $year_month);
-        $posts = $post->query()
-                ->recently()
-                ->published()
-                ->whereYear('created_at', $year)
-                ->whereMonth('created_at', $month)->paginate(20);
+        $posts = $post->query()->with('category')
+            ->recently()
+            ->published()
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)->paginate(20);
 
         $tags = $tag->tagsList();
         $categories = $category->categoryList();
@@ -140,8 +139,8 @@ class PostsController extends Controller
             $result = $uploader->save($file, 'posts', 1024);
             if ($result) {
                 return [
-                    'error' => '上传成功',
-                    'filename'=>$result['path']
+                    'error'    => '上传成功',
+                    'filename' => $result['path']
                 ];
             }
         }
@@ -150,5 +149,21 @@ class PostsController extends Controller
             'error'    => '上传失败',
             'filename' => ''
         ];
+    }
+
+    /**
+     * 文章全文检索
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(Request $request)
+    {
+        $keyword = strip_tags(clean($request->get('query')));
+
+        $posts = Post::search($keyword)->when(! \Auth::user()->is_admin, function ($query) {
+            $query->where('is_show', 1);
+        })->orderBy('created_at', 'desc')->paginate(20);
+
+        return view('posts.search', compact('posts'));
     }
 }

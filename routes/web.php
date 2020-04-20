@@ -18,6 +18,7 @@ Auth::routes(['verify' => true]);
 //Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
 
 // 文章
+Route::get('posts/search', 'PostsController@search')->name('posts.search'); // 需放在前面
 Route::resource('posts', 'PostsController',  ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('posts/{post}/{slug?}', 'PostsController@show')->name('posts.show');
 Route::post('posts/upload_post_image', 'PostsController@uploadPostImage')->name('posts.upload_post_image');

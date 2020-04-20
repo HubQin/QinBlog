@@ -14,10 +14,20 @@
                     </h1>
 
                     <div class="article-meta text-center text-secondary">
-                        {{ $post->created_at->diffForHumans() }}
-                        ⋅
-                        <i class="far fa-comment"></i>
-                        {{ $post->reply_count }}
+                        <a href="{{ route('categories.show', ['category' => $post->category->id]) }}">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#{{ $post->category->icon }}"></use>
+                            </svg>
+                        </a>
+                        <span>
+                            &nbsp;{{ $post->category->name }}
+                            ⋅
+                            {{ $post->created_at->format('Y-m-d') }}
+                            ⋅
+                            <i class="far fa-comment"></i>
+                            {{ $post->comment_count }}
+                        </span>
+
                     </div>
 
                     <div class="post-body markdown-body mt-4 mb-4">

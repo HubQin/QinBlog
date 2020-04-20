@@ -20383,6 +20383,19 @@ html {
   margin-bottom: 1em;
 }
 
+.posts-search-page .post-title {
+  font-weight: 600;
+}
+
+.posts-search-page .post-title a,
+.posts-search-page .post-title:hover {
+  text-decoration: none;
+}
+
+.posts-search-page em {
+  color: red !important;
+}
+
 .sidebar a:hover {
   text-decoration: none;
 }
@@ -20550,5 +20563,14 @@ select::-ms-input-placeholder {
           align-items: center;
   -webkit-box-pack: center;
           justify-content: center;
+}
+
+.posts-show-page .article-meta {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 

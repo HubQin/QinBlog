@@ -12,6 +12,7 @@
         "ext-json": "*",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
+        "fukuball/jieba-php": "^0.33.0",
         "guzzlehttp/guzzle": "~6.3",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
@@ -20,7 +21,8 @@
         "mews/purifier": "^3.2",
         "overtrue/laravel-lang": "^3.0",
         "overtrue/pinyin": "~4.0",
-        "socialiteproviders/github": "dev-master"
+        "socialiteproviders/github": "dev-master",
+        "vanry/laravel-scout-tntsearch": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

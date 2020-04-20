@@ -103,7 +103,8 @@ html {
 }
 
 /* Post Index Page */
-.root-page, .posts-index-page, .topics-index-page, .categories-show-page, .tags-show-page, .topics-show-page, .archives-show-page{
+.root-page, .posts-index-page, .topics-index-page, .categories-show-page,
+.tags-show-page, .topics-show-page, .archives-show-page{
     .post-list {
         .nav > li > a {
             position: relative;
@@ -151,6 +152,19 @@ html {
 }
 .topics-index-page .topic-card {
     margin-bottom: 1em;
+}
+
+.posts-search-page {
+    .post-title {
+        font-weight: 600;
+        a, &:hover {
+            text-decoration: none;
+
+        }
+    }
+    em {
+        color: red !important;
+    }
 }
 
 .sidebar a {
@@ -284,4 +298,10 @@ input, select {
         align-items: center;
         justify-content: center;
     }
+}
+
+.posts-show-page .article-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
