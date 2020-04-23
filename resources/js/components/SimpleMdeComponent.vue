@@ -1,6 +1,6 @@
 <template>
     <div :class="editorClassName">
-        <textarea :name="fieldName" ref="textarea">{{myContent}}</textarea>
+        <textarea :name="fieldName" ref="textarea" v-html="myContent"></textarea>
     </div>
 </template>
 
@@ -61,6 +61,7 @@
                     renderingConfig: { // 在预览期间调整解析标记的设置
                         codeSyntaxHighlighting: true // 开启代码高亮
                     },
+                    autoDownloadFontAwesome: false,  // 不要从CDN加载font awesome，使用本项目自己引入的
                     /*previewRender: (plainText, preview) => { // Async method
                         setTimeout(() => {
                             preview.innerHTML = this.simplemde.markdown(plainText);

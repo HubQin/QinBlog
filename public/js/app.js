@@ -2003,6 +2003,8 @@ __webpack_require__.r(__webpack_exports__);
           codeSyntaxHighlighting: true // 开启代码高亮
 
         },
+        autoDownloadFontAwesome: false,
+        // 不要从CDN加载font awesome，使用本项目自己引入的
 
         /*previewRender: (plainText, preview) => { // Async method
             setTimeout(() => {
@@ -2289,6 +2291,15 @@ __webpack_require__.r(__webpack_exports__);
     this.$nextTick(function () {
       var toc = _this.$refs.toc;
       var matches = document.querySelectorAll("".concat(_this.targetClass, " h2, ").concat(_this.targetClass, " h3"));
+
+      if (matches.length === 0) {
+        var span = document.createElement('span');
+        span.innerText = "暂无数据 ~_~";
+        toc.appendChild(span);
+        toc.style.textAlign = 'center';
+        return false;
+      }
+
       matches.forEach(function (item) {
         item.id = '#' + Math.random().toString(36).substring(7);
 
@@ -81196,9 +81207,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { class: _vm.editorClassName }, [
-    _c("textarea", { ref: "textarea", attrs: { name: _vm.fieldName } }, [
-      _vm._v(_vm._s(_vm.myContent))
-    ])
+    _c("textarea", {
+      ref: "textarea",
+      attrs: { name: _vm.fieldName },
+      domProps: { innerHTML: _vm._s(_vm.myContent) }
+    })
   ])
 }
 var staticRenderFns = []

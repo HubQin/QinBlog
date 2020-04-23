@@ -38,7 +38,7 @@ class PostsController extends Controller
 
     public function store(PostRequest $request, Post $post, PostService $postService)
     {
-        $data = $request->only(['title', 'body', 'category_id']);
+        $data = $request->only(['title', 'body', 'category_id', 'is_show']);
         $post->fill($data);
         $post->user_id = \Auth::id();
 
@@ -62,7 +62,13 @@ class PostsController extends Controller
         if (!empty($post->slug) && $post->slug != $request->slug) {
             return redirect()->to($post->link(), 301);
         }
-        return view('posts.show', compact('post'));
+
+        $topicPosts = [];
+        if ($post->topic_id > 0) {
+            $topicPosts = Post::where('topic_id', $post->topic_id)->select(['id', 'title'])->orderBy('sort')->get();
+        }
+
+        return view('posts.show', compact('post', 'topicPosts'));
     }
 
     public function edit(Post $post)
@@ -74,7 +80,6 @@ class PostsController extends Controller
         $tags = Tag::all(['id', 'name'])->toArray();
 
         $post->body = html_to_markdown($post->body);
-
         return view('posts.create_and_edit', compact('post', 'categories', 'topics', 'tags'));
     }
 
@@ -107,20 +112,16 @@ class PostsController extends Controller
         return redirect()->route('posts.index')->with('success', '删除成功！');
     }
 
-    public function archiveShow($year_month, Post $post, Tag $tag, Category $category)
+    public function archiveShow($year_month)
     {
         list($year, $month) = explode('-', $year_month);
-        $posts = $post->query()->with('category')
+        $posts = Post::query()->with('category')
             ->recently()
             ->published()
             ->whereYear('created_at', $year)
             ->whereMonth('created_at', $month)->paginate(20);
 
-        $tags = $tag->tagsList();
-        $categories = $category->categoryList();
-        $archives = $post->archiveList();
-
-        return view('posts.index', compact('posts', 'tags', 'categories', 'archives', 'year', 'month'));
+        return view('posts.index', compact('posts', 'year', 'month'));
     }
 
     /**

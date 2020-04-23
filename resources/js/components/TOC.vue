@@ -23,6 +23,15 @@
             this.$nextTick(() => {
                 const toc = this.$refs.toc;
                 const matches = document.querySelectorAll(`${this.targetClass} h2, ${this.targetClass} h3`);
+
+                if (matches.length === 0) {
+                    let span = document.createElement('span');
+                    span.innerText = "暂无数据 ~_~";
+                    toc.appendChild(span);
+                    toc.style.textAlign = 'center';
+                    return false;
+                }
+
                 matches.forEach(item => {
                     item.id = '#' + Math.random().toString(36).substring(7);
                     if (item.tagName === 'H2') {

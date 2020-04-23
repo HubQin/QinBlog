@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <simplemde-component
-                                content="{{ old('body', $post->body) }}"
+                                :content="postBody"
                             ></simplemde-component>
                         </div>
                         <div class="form-group">
@@ -130,6 +130,7 @@
         const app = new Vue({
             el: "#app",
             data: {
+                postBody: {!! json_encode($post->body) !!} || '',
                 tags: {!! json_encode($tags) !!},
                 categories: {!! json_encode($categories) !!},
                 topics: {!! json_encode($topics) !!},
@@ -139,7 +140,7 @@
                     selectLabel: "按 Enter 选择",
                     tagPlaceholder: "按 Enter 创建"
                 },
-                isShow: {{ $post->isShow ?? 0 }},
+                isShow: {{ $post->is_show ?? 0 }},
             },
             methods: {
                 submitForm(type) {
@@ -150,7 +151,9 @@
                     } else {
                         this.isShow = 0;
                     }
-                    this.$refs.form.submit();
+                    this.$nextTick(() => {
+                        this.$refs.form.submit();
+                    })
                 }
             }
         })

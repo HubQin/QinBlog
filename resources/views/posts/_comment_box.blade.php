@@ -7,7 +7,11 @@
         <div class="form-group">
             <textarea class="form-control" rows="3" placeholder="支持Markdown语法" name="content"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-comment mr-1"></i> 评论</button>
+        @auth
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-comment mr-1"></i> 评论</button>
+        @elseauth
+            <button type="submit" class="btn btn-secondary btn-sm" disabled title="请先登录">登录后可评论</button>
+        @endauth
     </form>
 </div>
 <hr>

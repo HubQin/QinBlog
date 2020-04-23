@@ -11,6 +11,9 @@
                 <div class="media-heading mt-0 mb-1 text-secondary">
                     <a href="#" title="{{ $comment->user->name }}">
                         {{ $comment->user->name }}
+                        @if($comment->user->id === 1)
+                            <span class="badge badge-success">博主</span>
+                            @endif
                     </a>
                     <span class="text-secondary"> • </span>
                     <span class="meta text-secondary"
