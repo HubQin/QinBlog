@@ -18,7 +18,7 @@
                         </a>
                         @if(!isset($topics))
                         <a class="float-right hide-on-mobile" href="{{ $post->link() }}">
-                            <span class="post-time"> {{ $post->created_at }} </span>
+                            <span class="post-time"> {{ $post->created_at->format('Y-m-d') }} </span>
                         </a>
                         @endif
                     </div>

@@ -123,9 +123,6 @@ html {
             &:hover {
                 text-decoration: none;
             }
-            &:visited {
-                color:#a2a2a2;
-            }
         }
 
         .post-title {
@@ -347,6 +344,11 @@ input, select {
 .back-to-top-show {
     opacity: 1 !important;
     visibility: visible !important;
+}
+
+.sidebar-media-body {
+    display: flex !important;
+    justify-content: space-between !important;
 }
 
 @media (min-width: 500px) {

@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
+        "encore/laravel-admin": "^1.7",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
         "fukuball/jieba-php": "^0.33.0",

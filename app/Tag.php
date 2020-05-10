@@ -30,6 +30,16 @@ class Tag extends Model
 {
     protected $fillable=['name', 'post_count'];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($model) {
+            if (\DB::table('post_tag')->where('tag_id', $model->id)->count()) {
+                throw new \Exception('该标签下已有文章，不能删除');
+            }
+        });
+    }
+
     public function posts()
     {
         return $this->belongsToMany(Post::class);
@@ -37,7 +47,7 @@ class Tag extends Model
 
     public function tagsList()
     {
-        $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light'];
+        $colors = ['primary', 'secondary', 'success', 'danger', 'info'];
 
         return static::all()->map(function ($tag) use ($colors) {
             $tag->color = $colors[array_rand($colors)];

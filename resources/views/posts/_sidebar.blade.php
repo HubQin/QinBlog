@@ -4,7 +4,7 @@
             <div class="text-center mt-1 mb-0 text-muted">标签</div>
             <hr class="mt-2 mb-3">
             @foreach ($tags as $tag)
-                <a href="{{ route('tags.show', $tag) }}" class="badge badge-{{ $tag->color }}">{{ $tag->name }}({{ $tag->post_count }})</a>
+                <a href="{{ route('tags.show', $tag) }}" class="btn btn-outline-{{ $tag->color }} btn-sm m-1">{{ $tag->name }}({{ $tag->post_count }})</a>
             @endforeach
         </div>
     </div>
@@ -17,8 +17,9 @@
             <hr class="mt-2 mb-3">
             @foreach ($categories as $category)
                 <a class="media mt-1" href="{{ route('categories.show', $category) }}">
-                    <div class="media-body">
-                        <span class="media-heading text-muted">{{ $category->name }} ({{ $category->post_count }})</span>
+                    <div class="media-body sidebar-media-body">
+                        <span class="media-heading text-muted">{{ $category->name }}</span>
+                        <span class="media-heading text-muted">{{ $category->post_count }}</span>
                     </div>
                 </a>
             @endforeach
@@ -33,8 +34,9 @@
             <hr class="mt-2 mb-3">
             @foreach ($archives as $date => $archive)
                 <a class="media mt-1" href="{{ route('archives.show', ['year_month' => $date]) }}">
-                    <div class="media-body">
-                        <span class="media-heading text-muted">{{ $date }} ({{ count($archive) }})</span>
+                    <div class="media-body sidebar-media-body">
+                        <span class="media-heading text-muted">{{ $date }}</span>
+                        <span class="media-heading text-muted">{{ count($archive) }}</span>
                     </div>
                 </a>
             @endforeach

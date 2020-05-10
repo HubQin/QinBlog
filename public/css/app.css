@@ -20316,16 +20316,6 @@ html {
   text-decoration: none;
 }
 
-.root-page .post-list a:visited,
-.posts-index-page .post-list a:visited,
-.topics-index-page .post-list a:visited,
-.categories-show-page .post-list a:visited,
-.tags-show-page .post-list a:visited,
-.topics-show-page .post-list a:visited,
-.archives-show-page .post-list a:visited {
-  color: #a2a2a2;
-}
-
 .root-page .post-list .post-title,
 .posts-index-page .post-list .post-title,
 .topics-index-page .post-list .post-title,
@@ -20617,6 +20607,13 @@ select::-ms-input-placeholder {
 .back-to-top-show {
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+.sidebar-media-body {
+  display: -webkit-box !important;
+  display: flex !important;
+  -webkit-box-pack: justify !important;
+          justify-content: space-between !important;
 }
 
 @media (min-width: 500px) {

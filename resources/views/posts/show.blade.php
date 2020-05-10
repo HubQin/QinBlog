@@ -66,7 +66,7 @@
 
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
             @if($post->topic_id > 0)
-                <div class="card mb-5">
+                <div class="card mb-4">
                     <div class="card-body toc-container">
                         <div class="text-center">
                             专题文章
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             @endif
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body toc-container">
                     <div class="text-center">
                         目录

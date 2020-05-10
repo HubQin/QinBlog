@@ -41,6 +41,7 @@ class PostsController extends Controller
         $data = $request->only(['title', 'body', 'category_id', 'is_show']);
         $post->fill($data);
         $post->user_id = \Auth::id();
+        $post->body = parsedown($post->body);
 
         // 如果有填写slug字段，创建一个唯一的以“-”连接的Slug
         if ($slug = $request->slug) {
@@ -88,6 +89,8 @@ class PostsController extends Controller
         $this->authorize('own', $post);
         $data = $request->only(['title', 'body', 'category_id', 'is_show']);
         $post->fill($data);
+        $post->body = parsedown($post->body);
+
 
         // 如果有填写slug字段，且Slug已修改，创建一个唯一的以“-”连接的Slug
         if ($slug = $request->slug && $request->slug != $post->slug) {

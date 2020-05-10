@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         /**
          * 增加内存防止中文分词报错
          */
-        ini_set('memory_limit', "1024M");
+        ini_set('memory_limit', '1024M');
 
 
         \App\Post::observe(\App\Observers\PostObserver::class);

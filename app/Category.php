@@ -26,6 +26,16 @@ class Category extends Model
 
     protected $fillable = ['name', 'icon', 'description'];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($model) {
+            if (count($model->posts)) {
+                throw new \Exception('该分类下已有文章，不能删除');
+            }
+        });
+    }
+
     public function categoryList()
     {
         // 输出有文章的分类
