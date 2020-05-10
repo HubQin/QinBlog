@@ -16,6 +16,7 @@ Route::get('/', 'PostsController@index')->name('root');
 Auth::routes(['verify' => true]);
 
 //Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
+Route::get('users/{user}', 'UsersController@show')->name('users.show');
 
 // 文章
 Route::get('posts/search', 'PostsController@search')->name('posts.search'); // 需放在前面

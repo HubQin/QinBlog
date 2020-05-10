@@ -79,4 +79,9 @@ class Comment extends Model
             $this->getChildIds($childId, $ids);
         }
     }
+
+    public function scopeRecently($query)
+    {
+        return $query->orderBy('created_at', 'DESC');
+    }
 }

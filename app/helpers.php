@@ -27,3 +27,9 @@ function html_to_markdown($html)
     $markdown = $converter->convert($html);
     return $markdown;
 }
+
+function query_if($name, $value = null)
+{
+    $result = request()->query($name);
+    return !empty($result) && $result == $value;
+}
