@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Admin\Extensions;
+namespace App\Admin\Extensions\Tools;
 
 
 use Encore\Admin\Grid;

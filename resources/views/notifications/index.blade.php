@@ -9,6 +9,9 @@
                 <div class="card-body">
                     <h3 class="text-xs-center">
                         <i class="far fa-bell" aria-hidden="true"></i> 我的通知
+                        @if(Auth::id() === 1)
+                        <a href="{{ url('/admin/comments?_scope_=approved') }}" target="_blank" class="btn btn-success btn-sm" style="float: right;">审核评论</a>
+                        @endif
                     </h3>
                     <hr>
                     @if ($notifications->count())

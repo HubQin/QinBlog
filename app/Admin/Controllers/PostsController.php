@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Post\MyEdit;
-use App\Admin\Extensions\MyPostGrid;
+use App\Admin\Extensions\Tools\MyPostGrid;
 use App\Category;
 use App\Post;
 use Encore\Admin\Controllers\AdminController;

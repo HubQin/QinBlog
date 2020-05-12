@@ -7,6 +7,8 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
+use App\Admin\Extensions\Tools\ReviewComment;
 
 class CommentsController extends AdminController
 {
@@ -33,6 +35,13 @@ class CommentsController extends AdminController
             $filter->scope('approved', '待审核')->where('approved', 0);
         });
 
+        $grid->tools(function ($tools) {
+            $tools->batch(function ($batch) {
+                $batch->add('审核通过', new ReviewComment(1));
+                $batch->add('设为待审核', new ReviewComment(0));
+            });
+        });
+
         $states = [
             'on'  => ['value' => 1, 'text' => 'Yes', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => 'No', 'color' => 'danger'],
@@ -40,7 +49,7 @@ class CommentsController extends AdminController
 
         $grid->column('id', 'ID')->sortable();
         $grid->column('user.name', '用户名');
-        $grid->column('content', '内容')->width(350);
+        $grid->column('content', '内容')->width(350)->view('admin.comment_content');
         $grid->column('parent_id', '上级ID');
         $grid->column('approved', '审核通过')->switch($states)->sortable();
         $grid->column('commentable_type', '所属类型');
@@ -96,5 +105,13 @@ class CommentsController extends AdminController
         $form->text('commentable_type', __('Commentable type'));
 
         return $form;
+    }
+
+    public function review(Request $request)
+    {
+        foreach (Comment::find($request->get('ids')) as $comment) {
+            $comment->approved = $request->get('approved');
+            $comment->save();
+        }
     }
 }

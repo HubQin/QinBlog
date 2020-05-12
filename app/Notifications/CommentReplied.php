@@ -37,7 +37,7 @@ class CommentReplied extends Notification
      */
     public function via($notifiable)
     {
-        return ['toDatabase'];
+        return ['database'];
     }
 
     public function toDatabase()
@@ -47,7 +47,7 @@ class CommentReplied extends Notification
         // 文章链接
         $link =  $post->link(['#comment' . $this->reply->id]);
 
-        $parentCommentContent = make_excerpt($this->reply->parentComment->content, 30);
+        $parentCommentContent = make_excerpt($this->reply->parentComment->content, 30) . '...';
 
         // 存入数据库里的数据
         return [

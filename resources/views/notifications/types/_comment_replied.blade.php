@@ -8,7 +8,7 @@
     <div class="media-body">
         <div class="media-heading mt-0 mb-1 text-secondary">
             <a href="{{ route('users.show', $notification->data['user_id']) }}">{{ $notification->data['user_name'] }}</a>
-            回复了
+            回复了您的评论：
             <a href="{{ $notification->data['post_link'] }}">{{ $notification->data['parent_comment_content'] }}</a>
 
             <span class="meta float-right" title="{{ $notification->created_at }}">
@@ -17,7 +17,7 @@
       </span>
         </div>
         <div class="comment-content">
-            {!! $notification->data['comment_content'] !!}
+            回复内容：{!! $notification->data['comment_content'] !!}
         </div>
     </div>
 </li>

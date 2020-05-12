@@ -18,4 +18,6 @@ Route::group([
     $router->resource('posts', PostsController::class);
     $router->resource('comments', CommentsController::class);
 
+    $router->post('comments/review', 'CommentsController@review');
+
 });
