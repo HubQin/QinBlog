@@ -45,3 +45,5 @@ Route::prefix('socials/{social_type}')
     Route::get('callback', 'AuthorizationsController@callback')->name('callback');
 });
 
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+

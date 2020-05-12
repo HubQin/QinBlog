@@ -84,4 +84,12 @@ class Comment extends Model
     {
         return $query->orderBy('created_at', 'DESC');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parentComment()
+    {
+        return $this->belongsTo(Comment::class, 'parent_id');
+    }
 }

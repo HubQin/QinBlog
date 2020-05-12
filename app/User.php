@@ -80,4 +80,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function commentNotify($instance)
+    {
+        // 通知的人是当前用户，不用通知
+        if ($this->id == \Auth::id()) {
+            return '';
+        }
+
+        // 递增用户未读通知数
+        if (method_exists($instance, 'toDatabase')) {
+            $this->increment('notification_count');
+        }
+
+        $this->notify($instance);
+    }
 }

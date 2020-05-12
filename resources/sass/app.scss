@@ -356,3 +356,19 @@ input, select {
         margin: 30px;
     }
 }
+
+/* 消息通知 */
+.notification-badge {
+    .badge {
+        font-size: 12px;
+        margin-top: 14px;
+    }
+
+    .badge-secondary {
+        background-color: #EBE8E8;
+    }
+
+    .badge-hint {
+        background-color: #d15b47 !important;
+    }
+}

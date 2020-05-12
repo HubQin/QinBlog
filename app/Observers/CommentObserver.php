@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Comment;
+use App\Notifications\CommentReplied;
+use App\Notifications\PostCommented;
 use Carbon\Carbon;
 use DB;
 
@@ -17,6 +19,16 @@ class CommentObserver
     public function created(Comment $comment)
     {
         $this->updatePostCount($comment);
+        $postUser = $comment->commentable->user;
+        $parentCommentUser = $comment->parentComment->user;
+
+        // 通知文章作者
+        $postUser->commentNotify(new PostCommented($comment));
+
+        // 如果是对评论的回复，还要通知该评论的作者
+        if($comment->parent_id && $postUser->id != $parentCommentUser->id) {
+            $parentCommentUser->commentNotify(new CommentReplied($comment));
+        }
     }
 
     public function deleted(Comment $comment)
