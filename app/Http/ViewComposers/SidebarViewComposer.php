@@ -15,21 +15,27 @@ use Illuminate\View\View;
 class SidebarViewComposer
 {
     protected $category;
-    protected $tags;
+    protected $tag;
     protected $post;
 
     public function __construct(Category $category, Tag $tag, Post $post)
     {
         $this->category = $category;
-        $this->tags = $tag;
+        $this->tag = $tag;
         $this->post = $post;
     }
 
     public function compose(View $view)
     {
-        $categories = $this->category->categoryList();
-        $tags = $this->tags->tagsList();
-        $archives = $this->post->archiveList();
+        $categories = cache()->rememberForever('categories', function (){
+            return $this->category->categoryList();
+        });
+        $tags = cache()->rememberForever('tags', function (){
+            return $this->tag->tagsList();
+        });
+        $archives = cache()->rememberForever('archives', function (){
+            return $this->post->archiveList();
+        });
 
         $view->with(compact('categories', 'tags', 'archives'));
     }
