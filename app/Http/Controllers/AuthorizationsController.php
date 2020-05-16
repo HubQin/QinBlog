@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Redirect;
 use Socialite;
 use Illuminate\Auth\AuthenticationException;
@@ -43,6 +44,10 @@ class AuthorizationsController extends Controller
                 'type'   => $type,
             ]);
             auth('web')->login($user);
+        }
+
+        if(auth('web')->id() === 1) {
+            auth('admin')->loginUsingId(1);
         }
 
         return Redirect::intended();

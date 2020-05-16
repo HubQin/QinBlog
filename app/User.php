@@ -38,6 +38,14 @@ use phpDocumentor\Reflection\Types\Boolean;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAvatar($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
  * @property-read int|null $comments_count
+ * @property string|null $openid
+ * @property string|null $type
+ * @property bool $is_admin
+ * @property int $notification_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereIsAdmin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereNotificationCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOpenid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereType($value)
  */
 class User extends Authenticatable
 {

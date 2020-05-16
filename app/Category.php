@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
  * @mixin \Eloquent
+ * @property int $post_count 分类下的文章总数
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
+ * @property-read int|null $posts_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category wherePostCount($value)
  */
 class Category extends Model
 {

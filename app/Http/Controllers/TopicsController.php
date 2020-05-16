@@ -18,7 +18,7 @@ class TopicsController extends Controller
             return $topic;
         });
         return view('topics.index', compact('topics'));
-}
+    }
 
     public function show(Request $request, Topic $topic)
     {

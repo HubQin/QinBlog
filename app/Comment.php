@@ -42,6 +42,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Comment withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Comment withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\Comment|null $parentComment
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment recently()
  */
 class Comment extends Model
 {

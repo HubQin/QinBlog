@@ -12,7 +12,6 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-//        dd($user->comments[0]->commentable);
         return view('users.show', compact('user'));
     }
 }

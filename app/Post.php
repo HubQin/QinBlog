@@ -59,6 +59,8 @@ use Laravel\Scout\Searchable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereSort($value)
  * @property int $comment_count 评论数量
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCommentCount($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $commentsWithReplies
+ * @property-read int|null $comments_with_replies_count
  */
 class Post extends Model
 {

@@ -20,6 +20,27 @@ _ide_helper_models.php
 /public/fonts
 /public/vendor
 
+resources/lang/ar/
+resources/lang/az/
+resources/lang/es/
+resources/lang/fa/
+resources/lang/fr/
+resources/lang/he/
+resources/lang/id/
+resources/lang/ja/
+resources/lang/ko/
+resources/lang/ms/
+resources/lang/nl/
+resources/lang/pl/
+resources/lang/pt-BR/
+resources/lang/pt/
+resources/lang/ru/
+resources/lang/tr/
+resources/lang/uk/
+resources/lang/ur/
+resources/lang/zh-TW/
+
+
 
 
 
