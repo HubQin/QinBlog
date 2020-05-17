@@ -7,6 +7,7 @@ use App\Tag;
 use App\Topic;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
+use DB;
 
 class PostService
 {
@@ -26,12 +27,12 @@ class PostService
                 // 处理专题
                 $this->handleTopic($request, $post);
 
-                // 处理slug TODO
-
                 // 保存文章
                 $post->save();
                 // 同步文章标签
                 $tagIds && $post->tags()->attach($tagIds);
+                // 更新标签文章数量
+                $this->updateTagsPostCount($tagIds);
 
                 return $post;
             });
@@ -45,6 +46,7 @@ class PostService
     {
         try {
             $post = \DB::transaction(function () use ($request, $post) {
+                $oldTagIds = $post->tag_ids->toArray();
 
                 // 处理标签
                 $tagIds = $this->handleTag($request);
@@ -54,8 +56,16 @@ class PostService
 
                 // 保存文章
                 $post->save();
+
                 // 同步文章标签
-                $tagIds && $post->tags()->sync($tagIds);
+                if ($tagIds) {
+                    $post->tags()->sync($tagIds);
+                } else {
+                    $oldTagIds && $post->tags()->detach($oldTagIds);
+                }
+
+                // 更新标签文章数
+                $this->updateTagsPostCount(array_merge($tagIds, $oldTagIds));
 
                 return $post;
             });
@@ -98,7 +108,7 @@ class PostService
             }
             return array_merge($tagIds, $newlyTagIds);
         } else {
-            return false;
+            return [];
         }
     }
 
@@ -115,5 +125,33 @@ class PostService
         $count = Post::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->where('id', '<>', $id)->count();
 
         $post->slug = $count ? "{$slug}-{$count}" : $slug;
+    }
+
+    /**
+     * 更新文章标签数量
+     * @param $tagIds
+     */
+    public function updateTagsPostCount($tagIds)
+    {
+        if ($tagIds) {
+            // 用于保存存在文章的标签
+            $tagIdsHasPost = [];
+
+            // 统计各标签文章数量
+            DB::table('post_tag')
+                ->select(DB::raw('tag_id,count(tag_id) as post_count'))
+                ->whereIn('tag_id', $tagIds)
+                ->groupBy('tag_id')
+                ->get()
+                ->each(function ($item) use(&$tagIdsHasPost){
+                    $tagIdsHasPost[] = $item->tag_id;
+                    DB::table('tags')->where('id', $item->tag_id)->update(['post_count' => $item->post_count]);
+                });
+
+            // 已经没有文章的标签，删除之
+            if ($tagIdsWithoutPost = array_diff($tagIds, $tagIdsHasPost)) {
+                DB::table('tags')->whereIn('id', $tagIdsWithoutPost)->delete();
+            }
+        }
     }
 }

@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Jobs\TranslateSlug;
 use App\Post;
+use App\Services\PostService;
+use DB;
 
 class PostObserver
 {
@@ -19,13 +21,52 @@ class PostObserver
         if (empty($post->slug)) {
             dispatch(new TranslateSlug($post));
         }
+
+        // 更新分类文章数量
+        $this->updateCategoryPostCount($post);
+
+        $this->forgetPostRelatedCache();
     }
 
-    public function created()
+    public function deleting(Post $post)
     {
-        // TODO
-        // 更新标签文章数
+        // 在删除前更新标签 因为删除后拿不到$post->tags_id属性
+        app(PostService::class)->updateTagsPostCount($post->tag_ids->toArray());
+    }
 
-        // 更新分类文章数
+    public function deleted(Post $post)
+    {
+        $this->updateCategoryPostCount($post);
+        $this->forgetPostRelatedCache();
+    }
+
+    private function forgetPostRelatedCache()
+    {
+        cache()->forget('categories');
+        cache()->forget('tags');
+        cache()->forget('archives');
+    }
+
+    private function updateCategoryPostCount(Post $post)
+    {
+        if ($post->category_id) {
+            $this->dbUpdatePostCount($post->category_id);
+        }
+
+        if ($oldCategoryId = $post->getOriginal('category_id')) {
+            $this->dbUpdatePostCount($oldCategoryId);
+        }
+    }
+
+    private function dbUpdatePostCount($categoryId)
+    {
+        DB::table('categories')
+            ->where('id', $categoryId)
+            ->update([
+                'post_count' => DB::table('posts')
+                    ->where('category_id', $categoryId)
+                    ->where('is_show', 1)
+                    ->count()
+            ]);
     }
 }
