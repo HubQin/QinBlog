@@ -20,4 +20,6 @@ Route::group([
 
     $router->post('comments/review', 'CommentsController@review');
 
+    $router->resource('columns', ColumnsController::class);
+
 });

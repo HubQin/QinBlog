@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Column;
 use Illuminate\View\View;
 use Illuminate\Support\ServiceProvider;
 use Vanry\Scout\Highlighter;
@@ -31,6 +32,14 @@ class ComposerServiceProvider extends ServiceProvider
         // 全文检索高亮实例
         view()->composer('posts.search', function ($view) {
             $view->with('highlighter', new Highlighter(new JiebaTokenizer()));
+        });
+
+        // 顶部导航栏数据（所有页面共有）
+        view()->composer('*', function ($view) {
+            $columns = cache()->rememberForever('columns', function () {
+                return Column::all();
+            });
+            $view->with(compact('columns'));
         });
     }
 }

@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand " href="{{ url('/') }}">
-            {{ config('site.site_name') }}<i class="text-secondary" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;{{ config('site.slogan') }}</i>
+            {{ config('site.site_name') }}{{--<i class="text-secondary" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;{{ config('site.slogan') }}</i>--}}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,6 +11,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
+                @foreach($columns ?? '' as $column)
+                    <li class="nav-item @if(request()->is($column->link. '*')) active @endif"><a class="nav-link" href="{{ url($column->link) }}">{{ $column->name }}</a></li>
+                @endforeach
             </ul>
 
             <!-- Right Side Of Navbar -->
