@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Laravel\Scout\Searchable;
+use App\Traits\ViewCountHelper;
 
 /**
  * App\Post
@@ -65,6 +66,8 @@ use Laravel\Scout\Searchable;
 class Post extends Model
 {
     use Searchable;
+
+    use ViewCountHelper;
 
     protected $fillable = [
         'title', 'body', 'excerpt', 'slug', 'topic_id', 'category_id', 'is_show'

@@ -25,8 +25,11 @@
                             ⋅
                             {{ $post->created_at->format('Y-m-d') }}
                             ⋅
-                            <i class="far fa-comment"></i>
+                            <i class="far fa-comment" title="评论数"></i>
                             {{ $post->comment_count }}
+                            ⋅
+                            <i class="fa fa-users" title="浏览量"></i>
+                            {{ $post->view_count + $viewCountTodayInCache }}
                         </span>
 
                     </div>

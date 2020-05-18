@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('blog:sync-view-count')->dailyAt('01:00');
     }
 
     /**

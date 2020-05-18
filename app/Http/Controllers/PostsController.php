@@ -11,8 +11,8 @@ use App\Tag;
 use App\Topic;
 use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
+use Carbon\Carbon;
 
 class PostsController extends Controller
 {
@@ -69,7 +69,9 @@ class PostsController extends Controller
             $topicPosts = Post::where('topic_id', $post->topic_id)->select(['id', 'title'])->orderBy('sort')->get();
         }
 
-        return view('posts.show', compact('post', 'topicPosts'));
+        $viewCountTodayInCache = $post->incrViewCount($post->id);
+
+        return view('posts.show', compact('post', 'topicPosts', 'viewCountTodayInCache'));
     }
 
     public function edit(Post $post)
