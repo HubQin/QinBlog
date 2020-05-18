@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Category;
+use App\Link;
 use App\Post;
 use App\Tag;
 use Illuminate\View\View;
@@ -36,7 +37,10 @@ class SidebarViewComposer
         $archives = cache()->rememberForever('archives', function (){
             return $this->post->archiveList();
         });
+        $links = cache()->rememberForever('links', function () {
+            return Link::where('status', 1)->orderBy('sort')->get();
+        });
 
-        $view->with(compact('categories', 'tags', 'archives'));
+        $view->with(compact('categories', 'tags', 'archives', 'links'));
     }
 }

@@ -22,6 +22,9 @@ Route::group([
 
     $router->resource('columns', ColumnsController::class);
 
-    $router->any('settings', 'SettingsController@settings')->name('admin.settings');
+    $router->get('settings', 'SettingsController@settings')->name('admin.settings');
+
+    $router->resource('links', LinksController::class);
+
 
 });

@@ -2,7 +2,7 @@
   'name' => '站点名称2',
   'slogan' => NULL,
   'beian' => '123456789',
-  'main_color' => 'rgba(147,149,220,0.85)',
+  'main_color' => 'rgba(147,148,220,0.85)',
   'email' => 'xxxxxxxxxxxx@gmail.com',
   'notice' => 'hahahaha',
   'footer' => '由Qin设计和编码',

@@ -17,7 +17,7 @@ class CreateLinksTable extends Migration
             $table->increments('id');
             $table->string('name')->comment('名称');
             $table->string('url')->comment('链接地址');
-            $table->string('logo')->default('')->comment('图片');
+            $table->string('logo')->nullable()->comment('图片');
             $table->integer('sort')->unsigned()->index()->default(0)->comment('排序');
             $table->boolean('status')->default(true)->comment('是否显示');
             $table->timestamps();

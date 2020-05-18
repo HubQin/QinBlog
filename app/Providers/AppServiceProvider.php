@@ -36,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Post::observe(\App\Observers\PostObserver::class);
         \App\Comment::observe(\App\Observers\CommentObserver::class);
         \App\Column::observe(\App\Observers\ColumnObserver::class);
+        \App\Link::observe(\App\Observers\LinkObserver::class);
     }
 }
