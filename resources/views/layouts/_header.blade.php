@@ -16,6 +16,17 @@
                 @endforeach
             </ul>
 
+            <ul class="navbar-nav mr-5">
+                <li>
+                    <form action="{{ route('posts.search') }}" method="GET" class="navbar-search" id="post-search">
+                        <input type="text" name="query" class="form-control small post-search-input" aria-label="Search" placeholder="搜索" value="{{ request()->get('query') }}">
+                        <button class="btn post-search-btn" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav navbar-right">
                 <!-- Authentication Links -->

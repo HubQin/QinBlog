@@ -20637,3 +20637,39 @@ select::-ms-input-placeholder {
   background-color: #d15b47 !important;
 }
 
+/* 文章搜索框 */
+
+#post-search {
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 500rem;
+  padding: 4px;
+  display: -webkit-box;
+  display: flex;
+  height: 36px;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+#post-search .post-search-input {
+  border: unset;
+  margin: 0;
+  max-width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  height: 31px;
+  line-height: 30px;
+  font-family: Lato, Helvetica, Neue;
+  padding: 0.6em;
+  color: rgba(0, 0, 0, 0.5);
+  box-shadow: none;
+  background: unset;
+}
+
+#post-search .post-search-btn {
+  height: 23px;
+  margin: 0 4px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
