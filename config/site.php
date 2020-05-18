@@ -1,8 +1,7 @@
-<?php
-
-return [
-    'site_name' => '站点名称',
-    'slogan' => '>_&nbsp;记录编程点滴',
-    'site_logo' => './log.jpg',
-    'default_avatar' => 'https://cdn.learnku.com/uploads/images/201709/20/1/PtDKbASVcz.png?imageView2/1/w/60/h/60',
-];
+<?php return array (
+  'name' => '站点名称2',
+  'slogan' => '标语2',
+  'beian' => '备案号',
+  'main_color' => 'rgba(224,35,35,1)',
+  'email' => 'xxxx@xxx.com',
+);

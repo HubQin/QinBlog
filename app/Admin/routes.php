@@ -22,4 +22,6 @@ Route::group([
 
     $router->resource('columns', ColumnsController::class);
 
+    $router->any('settings', 'SettingsController@settings')->name('admin.settings');
+
 });
