@@ -1,3 +1,31 @@
+@if (!empty($siteConfigs['notice']))
+    <div class="card mb-4">
+        <div class="card-body pt-2">
+            <div class="text-center mt-1 mb-0 text-muted">站点公告</div>
+            <hr class="mt-2 mb-3">
+            <p>{{ $siteConfigs['notice'] }}</p>
+        </div>
+    </div>
+@endif
+@if (!empty($siteConfigs['qr_wechat_office']))
+    <div class="card mb-4">
+        <div class="card-body pt-2">
+            <div class="text-center mt-1 mb-0 text-muted">公众号</div>
+            <hr class="mt-2 mb-3">
+            <img src="{{ $siteConfigs['qr_wechat_office'] }}" alt="公众号二维码">
+        </div>
+    </div>
+@endif
+@if (!empty($siteConfigs['qr_weapp']))
+    <div class="card mb-4">
+        <div class="card-body pt-2">
+            <div class="text-center mt-1 mb-0 text-muted">小程序</div>
+            <hr class="mt-2 mb-3">
+            <img src="{{ $siteConfigs['qr_weapp'] }}" alt="小程序二维码">
+        </div>
+    </div>
+@endif
+
 @if (count($tags))
     <div class="card mb-4">
         <div class="card-body pt-2">

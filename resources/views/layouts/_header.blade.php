@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top" style="border-top:4px solid {{ $siteConfigs['main_color']?? '#93d5dc' }};">
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand " href="{{ url('/') }}">
-            {{ config('site.site_name') }}{{--<i class="text-secondary" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;{{ config('site.slogan') }}</i>--}}
+            {{ $siteConfigs['name'] }}<span class="text-secondary" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;{{ $siteConfigs['slogan'] }}</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

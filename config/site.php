@@ -1,7 +1,12 @@
 <?php return array (
   'name' => '站点名称2',
-  'slogan' => '标语2',
-  'beian' => '备案号',
-  'main_color' => 'rgba(224,35,35,1)',
-  'email' => 'xxxx@xxx.com',
+  'slogan' => NULL,
+  'beian' => '123456789',
+  'main_color' => 'rgba(147,149,220,0.85)',
+  'email' => 'xxxxxxxxxxxx@gmail.com',
+  'notice' => 'hahahaha',
+  'footer' => '由Qin设计和编码',
+  'logo' => 'http://qin.test/storage/images/site/202005/1589810571_355jPClmFv.jpg',
+  'qr_weapp' => 'http://qin.test/storage/images/site/202005/1589810765_Wpsu7maVo4.jpg',
+  'qr_wechat_office' => 'http://qin.test/storage/images/site/202005/1589813326_UEIJJDtXeR.gif',
 );

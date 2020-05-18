@@ -34,12 +34,15 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('highlighter', new Highlighter(new JiebaTokenizer()));
         });
 
-        // 顶部导航栏数据（所有页面共有）
+        // 顶部导航栏数据，站点配置（所有页面共有）
         view()->composer('*', function ($view) {
             $columns = cache()->rememberForever('columns', function () {
                 return Column::all();
             });
-            $view->with(compact('columns'));
+            $siteConfigs = cache()->rememberForever('site_configs', function () {
+                return config('site');
+            });
+            $view->with(compact('columns', 'siteConfigs'));
         });
     }
 }

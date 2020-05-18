@@ -5,7 +5,7 @@
 
 @section('content')
     <!-- Back to top button -->
-    <a id="back-to-top"></a>
+    <a id="back-to-top" style="background-color: {{ $siteConfigs['main_color'] ?? '#93d5dc' }}"></a>
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <div class="card ">
