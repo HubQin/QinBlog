@@ -70,7 +70,8 @@ class Setting extends Form
         $this->text('slogan', '标语');
         $this->text('seo_keyword', 'SEO关键词');
         $this->text('seo_description', 'SEO描述');
-        $this->image('logo', '网站图标')->uniqueName()->move('public/upload/image1/');;
+        $this->image('logo', '网站图标')->uniqueName()->move('public/upload/image1/');
+        $this->text('iconfont_url', 'Iconfont图标')->help('到iconfont.cn创建项目并添加图标，选择Symbol下的链接，复制到这里，链接格式如：//at.alicdn.com/t/font_1594794_19amz4pa2n9.js');
         $this->image('qr_wechat_office', '公众号二维码')->uniqueName();
         $this->image('qr_weapp', '小程序二维码')->uniqueName();
         $this->text('beian', '备案号');

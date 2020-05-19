@@ -18,7 +18,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('//at.alicdn.com/t/font_1594794_19amz4pa2n9.js') }}"></script>
+    <script src="{{ $siteConfigs['iconfont_url'] }}"></script>
 
 </head>
 
