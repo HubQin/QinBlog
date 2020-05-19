@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $post->title)
-@section('description', '##')
+@section('description', $post->excerpt)
 
 @section('content')
     <!-- Back to top button -->

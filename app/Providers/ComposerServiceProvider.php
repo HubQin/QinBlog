@@ -39,9 +39,15 @@ class ComposerServiceProvider extends ServiceProvider
             $columns = cache()->rememberForever('columns', function () {
                 return Column::all();
             });
-            $siteConfigs = cache()->rememberForever('site_configs', function () {
-                return config('site');
-            });
+
+            if(request()->is('admin*')) {
+                $siteConfigs = config('site');
+            } else {
+                $siteConfigs = cache()->rememberForever('site_configs', function () {
+                    return config('site');
+                });
+            }
+
             $view->with(compact('columns', 'siteConfigs'));
         });
     }

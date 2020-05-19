@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PostsController@index')->name('root');
+Route::get('/about', 'HomeController@about')->name('about');
 
 Auth::routes(['verify' => true]);
 

@@ -51,6 +51,8 @@ class Setting extends Form
         }
 
         file_put_contents(config_path('site').'.php', '<?php return ' . var_export($data, true) . ';');
+        // 上面的file_put_contents可能还没有写完，这里先暂停一下^_^!
+        sleep(1);
 
         // 清理缓存
         $this->clearCache();
@@ -66,6 +68,8 @@ class Setting extends Form
     public function form(){
         $this->text('name', '网站名称')->rules('required');
         $this->text('slogan', '标语');
+        $this->text('seo_keyword', 'SEO关键词');
+        $this->text('seo_description', 'SEO描述');
         $this->image('logo', '网站图标')->uniqueName()->move('public/upload/image1/');;
         $this->image('qr_wechat_office', '公众号二维码')->uniqueName();
         $this->image('qr_weapp', '小程序二维码')->uniqueName();
@@ -75,6 +79,7 @@ class Setting extends Form
         $this->image('avatar', '站长头像');
         $this->text('notice', '站点公告');
         $this->text('footer', '页脚标语');
+        $this->textarea('about', '关于页内容')->placeholder('支持MarkDown语法');
     }
 
     /**
