@@ -14,6 +14,8 @@
     <meta name="description" content="@yield('description', $siteConfigs['name'] ?? '')" />
     <meta name="keyword" content="@yield('keyword', $siteConfigs['seo_keyword'] ?? '')" />
 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
