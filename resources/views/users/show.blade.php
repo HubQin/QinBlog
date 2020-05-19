@@ -8,7 +8,7 @@
 
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
             <div class="card ">
-                <img class="card-img-top" src="{{ $user->avatar }}" alt="{{ $user->name }}">
+                <img class="card-img-top" src="{{ $user->avatar ?? asset('images/default_avartar.jpg')}}" alt="{{ $user->name }}">
                 <div class="card-body">
                     <h5><strong>个人简介</strong></h5>
                     <p>{{ $user->introduction }}</p>
@@ -33,13 +33,17 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link bg-transparent @if(!query_if('tab')) active @endif" href="{{ route('users.show', $user->id) }}">Ta 的文章</a>
+                            <a class="nav-link bg-transparent @if(!query_if('tab', 'comments')) active @endif" href="{{ route('users.show', $user->id) }}">
+                                @if(auth()->id() == $user->id) 我的文章 @else Ta 的文章 @endif
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(query_if('tab', 'comments')) active @endif" href="{{ route('users.show', [$user->id, 'tab' => 'comments']) }}">Ta 的评论</a>
+                            <a class="nav-link @if(query_if('tab', 'comments')) active @endif" href="{{ route('users.show', [$user->id, 'tab' => 'comments']) }}">
+                                @if(auth()->id() == $user->id) 我的评论 @else Ta 的评论 @endif
+                            </a>
                         </li>
                     </ul>
-                    @if(!query_if('tab'))
+                    @if(query_if('tab', 'comments'))
                         @include('users._comments', ['comments' => $user->comments()->recently()->paginate(5)])
                     @else
                         @include('users._posts', ['posts' => $user->posts()->recently()->paginate(5)])

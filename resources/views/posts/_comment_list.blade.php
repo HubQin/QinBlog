@@ -4,7 +4,7 @@
             <div class="media-left">
                 <a href="#">
                     <img class="media-object img-thumbnail mr-3" alt="{{ $comment->user->name }}"
-                         src="{{ $comment->user->avatar }}" style="width:48px;height:48px;"/>
+                         src="{{ $comment->user->avatar ?? asset('images/default_avartar.jpg') }}" style="width:48px;height:48px;"/>
                 </a>
             </div>
             <div class="media-body">
