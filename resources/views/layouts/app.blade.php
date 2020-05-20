@@ -11,14 +11,16 @@
 
     <title>@yield('title', 'QinBlog') - {{ $siteConfigs['name'] }}</title>
 
-    <meta name="description" content="@yield('description', $siteConfigs['name'])" />
-    <meta name="keyword" content="@yield('keyword', $siteConfigs['seo_keyword'])" />
+    <meta name="description" content="@yield('description', $siteConfigs['seo_description'] ?? '')" />
+    <meta name="keyword" content="@yield('keyword', $siteConfigs['seo_keyword'] ?? '')" />
 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <script src="{{ $siteConfigs['iconfont_url'] }}"></script>
+    <script src="{{ $siteConfigs['iconfont_url'] ?? '' }}"></script>
 
 </head>
 

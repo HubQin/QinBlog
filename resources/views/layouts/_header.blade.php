@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand " href="{{ url('/') }}">
-            {{ $siteConfigs['name'] }}<span class="text-secondary" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;{{ $siteConfigs['slogan'] }}</span>
+            <span class="mr-3"><img src="{{ $siteConfigs['logo'] ?? asset('images/logo.png') }}" style="height: 31px;"/></span>{{ $siteConfigs['name'] }}<span class="text-secondary" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;{{ $siteConfigs['slogan']?? '' }}</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ Auth::user()->avatar ?? config('site.default_avatar') }}" class="img-responsive img-circle" width="30px" height="30px" />
+                        <img src="{{ Auth::user()->avatar ?? asset('images/default_avartar.jpg') }}" class="img-responsive img-circle" width="30px" height="30px" />
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">

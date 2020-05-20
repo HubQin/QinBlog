@@ -130,7 +130,7 @@
         const app = new Vue({
             el: "#app",
             data: {
-                postBody: {!! json_encode($post->body) !!} || '',
+                postBody: {!! json_encode(old('body', $post->body)) !!} || '',
                 tags: {!! json_encode($tags) !!},
                 categories: {!! json_encode($categories) !!},
                 topics: {!! json_encode($topics) !!},

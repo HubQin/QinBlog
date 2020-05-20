@@ -1975,8 +1975,9 @@ __webpack_require__.r(__webpack_exports__);
         autofocus: true,
         status: false,
         autosave: {
-          enabled: true,
-          uniqueId: Math.random().toString(36).substring(2),
+          enabled: false,
+          // 关闭自动保存
+          uniqueId: 'demo',
           delay: 2000
         },
         element: this.$refs.textarea,
