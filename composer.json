@@ -23,6 +23,7 @@
         "overtrue/laravel-lang": "^3.0",
         "overtrue/pinyin": "~4.0",
         "socialiteproviders/github": "dev-master",
+        "valiner/identicon-avatar": "^0.0.1",
         "vanry/laravel-scout-tntsearch": "^2.0"
     },
     "require-dev": {

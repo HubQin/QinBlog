@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\IdentityIcon\IdentityIcon;
 use Illuminate\Support\ServiceProvider;
 use Parsedown;
 
@@ -18,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
             return Parsedown::instance()->setSafeMode(true);
         });
         $this->app->alias(Parsedown::class, 'parsedown');
+
+        $this->app->singleton(IdentityIcon::class, function (){
+            return new IdentityIcon();
+        });
+        $this->app->alias(IdentityIcon::class, 'auto_avatar');
     }
 
     /**

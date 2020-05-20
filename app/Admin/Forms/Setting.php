@@ -36,11 +36,9 @@ class Setting extends Form
                 if ($result) {
                     $data[$field] = $result['path'];
                 }
-            } else {
-                // 没编辑的且原来有值的 保持住
-                empty($originalConfigs[$field]) || $data[$field] = $originalConfigs[$field];
             }
         }
+        // 存在的问题：编辑时原有的图片数据会丢失，前端页面删除图片无法获取到是否删除的标记！
 
         // 更新站长头像
         if ($file = $request->file('avatar')) {
@@ -72,8 +70,6 @@ class Setting extends Form
         $this->text('seo_description', 'SEO描述');
         $this->image('logo', '网站图标')->uniqueName()->move('public/upload/image1/');
         $this->text('iconfont_url', 'Iconfont图标')->help('到iconfont.cn创建项目并添加图标，选择Symbol下的链接，复制到这里，链接格式如：//at.alicdn.com/t/font_1594794_19amz4pa2n9.js');
-        $this->image('qr_wechat_office', '公众号二维码')->uniqueName();
-        $this->image('qr_weapp', '小程序二维码')->uniqueName();
         $this->text('beian', '备案号');
         $this->color('main_color', '主色调')->default('#ccc');
         $this->email('email', '站长邮箱')->rules('email');
@@ -81,6 +77,8 @@ class Setting extends Form
         $this->text('notice', '站点公告');
         $this->text('footer', '页脚标语');
         $this->textarea('about', '关于页内容')->placeholder('支持MarkDown语法');
+        $this->image('qr_wechat_office', '公众号二维码')->uniqueName();
+        $this->image('qr_weapp', '小程序二维码')->uniqueName();
     }
 
     /**
