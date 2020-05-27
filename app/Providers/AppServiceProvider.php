@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\IdentityIcon\IdentityIcon;
 use Illuminate\Support\ServiceProvider;
 use Parsedown;
+use Ricoa\CopyWritingCorrect\CopyWritingCorrectService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             return new IdentityIcon();
         });
         $this->app->alias(IdentityIcon::class, 'auto_avatar');
+
+        $this->app->singleton(CopyWritingCorrectService::class, function() {
+            return new CopyWritingCorrectService();
+        });
     }
 
     /**
