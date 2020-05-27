@@ -24,7 +24,7 @@ class Setting extends Form
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request){
-        $data = $request->except(['logo', 'qr_weapp', 'qr_wechat_office', 'avatar']);
+        $data = $request->except(['logo', 'qr_weapp', 'qr_wechat_office', 'avatar', 'removed_image']);
 
         $uploader = app(ImageUploader::class);
         $originalConfigs = config('site');
@@ -36,9 +36,22 @@ class Setting extends Form
                 if ($result) {
                     $data[$field] = $result['path'];
                 }
+            } else {
+                // 如果原来有值，根据移除标记判断下要不要保持
+                if(!empty($originalConfigs[$field])) {
+                    if($request->has('removed_image')) {
+                        if(!in_array($field, $request->get('removed_image'))) {
+                            $data[$field] = $originalConfigs[$field];
+                        }
+                    } else {
+                        // 没有任何移除标记，都保持
+                        $data[$field] = $originalConfigs[$field];
+                    }
+                }
             }
         }
-        // 存在的问题：编辑时原有的图片数据会丢失，前端页面删除图片无法获取到是否删除的标记！
+
+
 
         // 更新站长头像
         if ($file = $request->file('avatar')) {
@@ -49,7 +62,7 @@ class Setting extends Form
         }
 
         file_put_contents(config_path('site').'.php', '<?php return ' . var_export($data, true) . ';');
-        // 上面的file_put_contents可能还没有写完，这里先暂停一下^_^!
+        // 虽然查到file_put_contents是IO阻塞操作，但不知为何，有时缓存没有更新到新的配置，这里还是暂停一下
         sleep(1);
 
         // 清理缓存
@@ -57,7 +70,7 @@ class Setting extends Form
 
         admin_success('修改成功');
 
-        return back();
+        return redirect(url('admin/settings'));
     }
 
     /**
