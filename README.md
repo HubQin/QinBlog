@@ -1,78 +1,164 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## 博客介绍
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### 环境要求
+```
+Laravel 6.X
+PHP 7.2+
+Mysql 5.7+
+Redis 5.0+
+```
+### 主要功能
+* 文章
+    * 集成 Markdown 编辑器，支持拖拽上传图片
+    * 多标签选择器
+    * 支持全文检索
+    * 可分专题发布文章
+    * 代码高亮
+* 评论
+    * 支持多级嵌套评论
+* 用户
+    * 支持GitHub登录
+* 管理后台
+    * 站点信息可配置
+    
+ ### 项目信息
+ * 代码地址：https://github.com/HubQin/QinBlog
+ * Demo地址：https://blog.ishare.cool/
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 博客部署
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 下载代码
+```
+https://github.com/HubQin/QinBlog.git blog
+```
 
-## Learning Laravel
+### Laravel 配置
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* 创建`.env`文件
+```
+cp .env.example .env
+```
+* 配置`.env`文件如下：
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+```
+APP_NAME=Larashop  # <-- 应用名
+APP_ENV=production # <-- 运行环境
+APP_KEY= # <-- 后面将运行命令生成
+APP_DEBUG=false # <-- 关闭调试（部署过程方便调试可先设为true）
+APP_URL=xxxx.xxx #  <-- 你的网站地址
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+LOG_CHANNEL=stack
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+DB_CONNECTION=mysql
+DB_HOST=mysql # <-- mysql主机，注意是填MySQL在docker-compose中的服务名
+DB_PORT=3306
+DB_DATABASE=myblog # <-- 数据库名称
+DB_USERNAME=root   # <-- 数据库用户名
+DB_PASSWORD=xxxxxx # <-- 数据库密码，填写在docker-compse.yml文件中设置的密码
 
-## Contributing
+BROADCAST_DRIVER=log
+CACHE_DRIVER=redis # <-- 缓存驱动
+QUEUE_CONNECTION=redis # <-- 队列驱动
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+REDIS_HOST=redis # <-- redis主机，填写规则同mysql
+REDIS_PASSWORD=xxxxxx # <-- 填写在 redis.conf中设置的密码（requirepass），没设置则不用写
+REDIS_PORT=6379
 
-## Code of Conduct
+# 暂时没用到邮箱，可不配置
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.qq.com
+MAIL_PORT=465
+MAIL_USERNAME=xxxxxx@qq.com # <-- 你的邮箱
+MAIL_PASSWORD=xxxxxx # <--从邮箱服务商获取的密码
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=xxxxxx@qq.com # <-- 你的邮箱
+MAIL_FROM_NAME=Larashop # <-- 应用名
+```
+* 创建数据库，名称与`.env`中`DB_DATABASE`的值相同
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* 安装依赖
+```
+composer install --no-dev --prefer-dist --optimize-autoloader
+```
+* 生成KEY
+```
+php artisan key:generate
+```
+* 创建软链接
+```
+php artisan storage:link
 
-## Security Vulnerabilities
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* 数据表迁移
+```
+php artisan migrate --force
 
-## License
+```
+* 创建软连接
+```
+php artisan storage:link
+```
+* 生成配置、路由、事件缓存
+```
+php artisan route:cache
+php artisan config:cache
+php artisan event:cache
+```
+* 导入后台菜单和角色数据
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    在数据库运行`/databaseadmin-menu-and-role-data.sql`文件
+* 发布管理后台资源文件
+```
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+```
+* 创建后台管理员账号
+
+    运行 `php artisan admin:create-user`，依照提示输入管理员名称、密码等
+
+### Nginx 配置
+
+可参考官网配置：https://laravel.com/docs/7.x/deployment#nginx
+
+需要更完善的配置，入配置HTTPS，更多安全配置等，可参考我的另一篇文章：https://learnku.com/articles/40979
+
+### Supervisor 进程监护配置
+关于 Supervisor 的使用，可以参考我之前写的这篇：https://learnku.com/articles/36939
+
+参考配置：
+```
+[program:qin]
+process_name=%(program_name)s_%(process_num)02d
+directory=/var/www/html/qin
+command=php artisan queue:work --tries=3 --sleep=3 --daemon
+autostart=true
+autorestart=true
+numprocs=1
+user=root
+stopasgroup=true
+killasgroup=true
+redirect_stderr=true
+stdout_logfile=/var/www/html/qin/storage/logs/queue.log
+```
+
+### 解决文件权限问题
+* 日志和缓存权文件限
+```
+sudo chown -R $USER:www-data storage
+sudo chown -R $USER:www-data bootstrap/cache
+
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+```
+* 全文检索数据文件权限
+
+    由于最开始你发表文章时，索引是由队列生成的，而队列有可能是root账号生成的，这可能导致web访问的账号无法修改该文件。所以，部署完成后发表一篇文章
+在`storage/indices`目录会有`posts.index`文件，在项目根目录下运行`chmod 0777 storage/indices/posts.index`，给予最高权限。
+* 站点配置文件`config/site`也要给予最高权限，因为管理后台配置站点要修改到这个文件。
+
+## 主要功能展示
