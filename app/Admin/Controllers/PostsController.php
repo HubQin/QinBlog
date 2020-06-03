@@ -95,4 +95,23 @@ class PostsController extends AdminController
 
         return $grid;
     }
+
+    /**
+     * Make a form builder.
+     *
+     * @return Form
+     */
+    protected function form()
+    {
+        $form = new Form(new Post());
+
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'Yes', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => 'No', 'color' => 'danger'],
+        ];
+
+        $form->switch('is_show')->states($states);
+
+        return $form;
+    }
 }
