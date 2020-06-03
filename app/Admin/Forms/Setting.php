@@ -24,7 +24,7 @@ class Setting extends Form
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request){
-        $data = $request->except(['logo', 'qr_weapp', 'qr_wechat_office', 'avatar']);
+        $data = $request->except(['logo', 'qr_weapp', 'qr_wechat_office', 'avatar', 'removed_image']);
 
         $uploader = app(ImageUploader::class);
         $originalConfigs = config('site');
@@ -37,10 +37,21 @@ class Setting extends Form
                     $data[$field] = $result['path'];
                 }
             } else {
-                // 没编辑的且原来有值的 保持住
-                empty($originalConfigs[$field]) || $data[$field] = $originalConfigs[$field];
+                // 如果原来有值，根据移除标记判断下要不要保持
+                if(!empty($originalConfigs[$field])) {
+                    if($request->has('removed_image')) {
+                        if(!in_array($field, $request->get('removed_image'))) {
+                            $data[$field] = $originalConfigs[$field];
+                        }
+                    } else {
+                        // 没有任何移除标记，都保持
+                        $data[$field] = $originalConfigs[$field];
+                    }
+                }
             }
         }
+
+
 
         // 更新站长头像
         if ($file = $request->file('avatar')) {
@@ -51,7 +62,7 @@ class Setting extends Form
         }
 
         file_put_contents(config_path('site').'.php', '<?php return ' . var_export($data, true) . ';');
-        // 上面的file_put_contents可能还没有写完，这里先暂停一下^_^!
+        // 虽然查到file_put_contents是IO阻塞操作，但不知为何，有时缓存没有更新到新的配置，这里还是暂停一下
         sleep(1);
 
         // 清理缓存
@@ -59,7 +70,7 @@ class Setting extends Form
 
         admin_success('修改成功');
 
-        return back();
+        return redirect(url('admin/settings'));
     }
 
     /**
@@ -72,8 +83,6 @@ class Setting extends Form
         $this->text('seo_description', 'SEO描述');
         $this->image('logo', '网站图标')->uniqueName()->move('public/upload/image1/');
         $this->text('iconfont_url', 'Iconfont图标')->help('到iconfont.cn创建项目并添加图标，选择Symbol下的链接，复制到这里，链接格式如：//at.alicdn.com/t/font_1594794_19amz4pa2n9.js');
-        $this->image('qr_wechat_office', '公众号二维码')->uniqueName();
-        $this->image('qr_weapp', '小程序二维码')->uniqueName();
         $this->text('beian', '备案号');
         $this->color('main_color', '主色调')->default('#ccc');
         $this->email('email', '站长邮箱')->rules('email');
@@ -81,6 +90,8 @@ class Setting extends Form
         $this->text('notice', '站点公告');
         $this->text('footer', '页脚标语');
         $this->textarea('about', '关于页内容')->placeholder('支持MarkDown语法');
+        $this->image('qr_wechat_office', '公众号二维码')->uniqueName();
+        $this->image('qr_weapp', '小程序二维码')->uniqueName();
     }
 
     /**

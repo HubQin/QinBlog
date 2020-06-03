@@ -7,12 +7,14 @@ use App\Notifications\CommentReplied;
 use App\Notifications\PostCommented;
 use Carbon\Carbon;
 use DB;
+use Ricoa\CopyWritingCorrect\CopyWritingCorrectService;
 
 class CommentObserver
 {
     public function creating(Comment $comment)
     {
         $comment->content = parsedown($comment->content);
+        $comment->content = app(CopyWritingCorrectService::class)->correct($comment->content);
         $comment->content = clean($comment->content, 'post_body');
     }
 

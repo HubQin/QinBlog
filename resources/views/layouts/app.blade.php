@@ -11,7 +11,7 @@
 
     <title>@yield('title', 'QinBlog') - {{ $siteConfigs['name'] }}</title>
 
-    <meta name="description" content="@yield('description', $siteConfigs['name'] ?? '')" />
+    <meta name="description" content="@yield('description', $siteConfigs['seo_description'] ?? '')" />
     <meta name="keyword" content="@yield('keyword', $siteConfigs['seo_keyword'] ?? '')" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">

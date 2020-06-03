@@ -2,7 +2,13 @@
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand " href="{{ url('/') }}">
-            <span class="mr-3"><img src="{{ $siteConfigs['logo'] ?? asset('images/logo.png') }}" style="height: 31px;"/></span>{{ $siteConfigs['name'] }}<span class="text-secondary" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;{{ $siteConfigs['slogan']?? '' }}</span>
+            @if(!empty($siteConfigs['logo']))
+            <span class="mr-3">
+                <img src="{{ $siteConfigs['logo'] }}" style="height: 31px;"/>
+            </span>
+            @endif
+            {{ $siteConfigs['name'] }}
+            <span class="text-secondary" style="font-size: 10px;">{{ $siteConfigs['slogan']?? '' }}</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

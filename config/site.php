@@ -17,6 +17,5 @@
 ### 标题2
 ```
 echo phpinfo();
-```',
-  'logo' => 'http://qin.test/storage/images/site/202005/1589903873_ZgT2Bpy3q9.png',
+```'
 );

@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "ext-json": "*",
         "encore/laravel-admin": "^1.7",
         "erusev/parsedown": "^1.7",
@@ -22,6 +22,7 @@
         "mews/purifier": "^3.2",
         "overtrue/laravel-lang": "^3.0",
         "overtrue/pinyin": "~4.0",
+        "ricoa/copywriting-correct": "dev-master",
         "socialiteproviders/github": "dev-master",
         "vanry/laravel-scout-tntsearch": "^2.0"
     },
