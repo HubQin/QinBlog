@@ -26,5 +26,6 @@ Route::group([
 
     $router->resource('links', LinksController::class);
 
+    $router->resource('topics', TopicsController::class);
 
 });

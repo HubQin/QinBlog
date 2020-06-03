@@ -116,7 +116,7 @@ php artisan event:cache
 ```
 * 导入后台菜单和角色数据
 
-    在数据库运行`/databaseadmin-menu-and-role-data.sql`文件
+    在数据库运行`/database/admin-menu-and-role-data.sql`文件
 * 发布管理后台资源文件
 ```
 php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
