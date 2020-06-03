@@ -16,17 +16,17 @@ class SeedColumnsData extends Migration
         $columns = [
             [
                 'name'        => '文章',
-                'link'        => '/articles',
+                'link'        => 'posts',
                 'description' => '',
             ],
             [
                 'name'        => '专题',
-                'link'        => '/topics',
+                'link'        => 'topics',
                 'description' => '',
             ],
             [
                 'name'        => '关于',
-                'link'        => '/about',
+                'link'        => 'about',
                 'description' => '',
             ],
         ];

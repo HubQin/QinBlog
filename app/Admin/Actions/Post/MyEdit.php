@@ -14,7 +14,7 @@ class MyEdit extends RowAction
      */
     public function href()
     {
-        return route('posts.create', $this->getKey());
+        return route('posts.edit', $this->row);
     }
 
     public function render()
