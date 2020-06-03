@@ -14,17 +14,21 @@ Redis 5.0+
     * 支持全文检索
     * 可分专题发布文章
     * 代码高亮
+    * 支持分类、打标签
 * 评论
     * 支持多级嵌套评论
+    * 收到评论/回复后站内通知
+
 * 用户
     * 支持GitHub登录
+    * 站长登录前/后台，同步前/后台登录状态
+    
 * 管理后台
     * 站点信息可配置
     
  ### 项目信息
  * 代码地址：https://github.com/HubQin/QinBlog
  * Demo地址：https://blog.ishare.cool/
-
 
 
 ## 博客部署
@@ -161,4 +165,7 @@ chmod -R 775 bootstrap/cache
 在`storage/indices`目录会有`posts.index`文件，在项目根目录下运行`chmod 0777 storage/indices/posts.index`，给予最高权限。
 * 站点配置文件`config/site`也要给予最高权限，因为管理后台配置站点要修改到这个文件。
 
+### iconfont 图标设置
+
+   分类图标使用了iconfont。配置方法：登录https://www.iconfont.cn/创建一个项目，选择图标到购物车后，添加到项目。进入“我的项目”，选择“Symbol”类型，复制 .js 后缀的 url，到管理后台--站点配置，填入对应的输入框，然后保存即可。
 ## 主要功能展示
