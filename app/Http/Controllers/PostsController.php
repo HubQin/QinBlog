@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Comment;
 use App\Http\Requests\PostRequest;
 use App\Services\ImageUploader;
 use App\Services\PostService;
@@ -11,9 +10,6 @@ use App\Tag;
 use App\Topic;
 use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Support\Facades\Redis;
-use Carbon\Carbon;
-use Ricoa\CopyWritingCorrect\CopyWritingCorrectService;
 
 class PostsController extends Controller
 {
@@ -43,7 +39,6 @@ class PostsController extends Controller
         $post->fill($data);
         $post->user_id = \Auth::id();
         $post->body = parsedown($post->body);
-        $post->body = app(CopyWritingCorrectService::class)->correct($post->body);
 
         // 如果有填写slug字段，创建一个唯一的以“-”连接的Slug
         if ($slug = $request->slug) {
@@ -94,7 +89,6 @@ class PostsController extends Controller
         $data = $request->only(['title', 'body', 'category_id', 'is_show']);
         $post->fill($data);
         $post->body = parsedown($post->body);
-        $post->body = app(CopyWritingCorrectService::class)->correct($post->body);
 
 
         // 如果有填写slug字段，且Slug已修改，创建一个唯一的以“-”连接的Slug

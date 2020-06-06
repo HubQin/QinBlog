@@ -22,7 +22,6 @@
         "mews/purifier": "^3.2",
         "overtrue/laravel-lang": "^3.0",
         "overtrue/pinyin": "~4.0",
-        "ricoa/copywriting-correct": "dev-master",
         "socialiteproviders/github": "dev-master",
         "vanry/laravel-scout-tntsearch": "^2.0"
     },

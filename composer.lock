@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "194cde621e8f9d0d154b6407feb7595a",
+    "content-hash": "8d75eb0394c1482a717582a41852b63b",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -2064,44 +2064,6 @@
             "time": "2020-05-22T08:12:19+00:00"
         },
         {
-            "name": "naux/auto-correct",
-            "version": "v1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/NauxLiu/auto-correct.git",
-                "reference": "e1a7796c18a74c1e4b873573f2547627d4dc5b30"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/NauxLiu/auto-correct/zipball/e1a7796c18a74c1e4b873573f2547627d4dc5b30",
-                "reference": "e1a7796c18a74c1e4b873573f2547627d4dc5b30",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Naux\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "NauxLiu",
-                    "email": "nauxliu@gmail.com"
-                }
-            ],
-            "time": "2018-01-02T17:49:48+00:00"
-        },
-        {
             "name": "nesbot/carbon",
             "version": "2.35.0",
             "source": {
@@ -2971,57 +2933,6 @@
                 "uuid"
             ],
             "time": "2020-02-21T04:36:14+00:00"
-        },
-        {
-            "name": "ricoa/copywriting-correct",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ricoa/copywriting-correct.git",
-                "reference": "c0c13d3854252c4f55d70a1c32d6537cc51e63ec"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ricoa/copywriting-correct/zipball/c0c13d3854252c4f55d70a1c32d6537cc51e63ec",
-                "reference": "c0c13d3854252c4f55d70a1c32d6537cc51e63ec",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "naux/auto-correct": "^1.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Ricoa\\CopyWritingCorrect\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ricoo",
-                    "email": "ricoozf@gmail.com"
-                }
-            ],
-            "description": "中英文文案排版纠正器，帮助解决中英文混排的排版问题",
-            "homepage": "https://github.com/ricoa/copywriting-correct",
-            "keywords": [
-                "copywriting-correct",
-                "php"
-            ],
-            "time": "2017-05-08T02:26:21+00:00"
         },
         {
             "name": "socialiteproviders/github",
@@ -5590,16 +5501,16 @@
         },
         {
             "name": "composer/xdebug-handler",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "1ab9842d69e64fb3a01be6b656501032d1b78cb7"
+                "reference": "fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/1ab9842d69e64fb3a01be6b656501032d1b78cb7",
-                "reference": "1ab9842d69e64fb3a01be6b656501032d1b78cb7",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51",
+                "reference": "fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5636,7 +5547,7 @@
                 "Xdebug",
                 "performance"
             ],
-            "time": "2020-03-01T12:26:26+00:00"
+            "time": "2020-06-04T11:16:35+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -8310,7 +8221,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "ricoa/copywriting-correct": 20,
         "socialiteproviders/github": 20
     },
     "prefer-stable": true,
