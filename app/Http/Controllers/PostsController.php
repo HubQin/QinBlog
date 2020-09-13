@@ -159,7 +159,7 @@ class PostsController extends Controller
     {
         $keyword = strip_tags(clean($request->get('query')));
 
-        $posts = Post::search($keyword)->when(! \Auth::user()->is_admin, function ($query) {
+        $posts = Post::search($keyword)->when(!\Auth::user() || !\Auth::user()->is_admin, function ($query) {
             $query->where('is_show', 1);
         })->orderBy('created_at', 'desc')->paginate(20);
 
